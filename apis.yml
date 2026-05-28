@@ -1,0 +1,32 @@
+aid: haveibeenpwned
+name: HaveIBeenPwned
+description: "Passwords which have previously been exposed in data breaches"
+url: https://haveibeenpwned.com/API/v3
+specificationVersion: '0.20'
+created: '2026-05-28'
+modified: '2026-05-28'
+x-source: public-apis/public-apis
+x-category: "Security"
+x-tier: 3
+x-tier-reason: bulk-registered-from-public-apis
+tags:
+  - Security
+  - Public APIs
+apis:
+  - name: HaveIBeenPwned
+    description: "Passwords which have previously been exposed in data breaches"
+    humanURL: https://haveibeenpwned.com/API/v3
+    baseURL: https://haveibeenpwned.com/API/v3
+    tags:
+      - Security
+    properties:
+      - type: Documentation
+        url: https://haveibeenpwned.com/API/v3
+common:
+  - type: Website
+    url: https://haveibeenpwned.com/API/v3
+  - type: PublicAPIsListing
+    url: https://github.com/public-apis/public-apis
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
