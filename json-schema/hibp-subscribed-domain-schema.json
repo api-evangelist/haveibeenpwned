@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://haveibeenpwned.com/schemas/subscribed-domain.json",
+  "title": "SubscribedDomain",
+  "description": "A domain monitored by an active HIBP subscription.",
+  "type": "object",
+  "required": ["DomainName"],
+  "properties": {
+    "DomainName": { "type": "string" },
+    "PwnCount": { "type": ["integer", "null"], "minimum": 0 },
+    "PwnCountExcludingSpamLists": { "type": ["integer", "null"], "minimum": 0 },
+    "PwnCountExcludingSpamListsAtLastSubscriptionRenewal": { "type": ["integer", "null"], "minimum": 0 },
+    "NextSubscriptionRenewal": { "type": ["string", "null"], "format": "date-time" }
+  }
+}

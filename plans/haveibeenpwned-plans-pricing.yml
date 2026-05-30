@@ -1,0 +1,115 @@
+apiCommonsPlansVersion: "0.1"
+provider:
+  id: haveibeenpwned
+  name: Have I Been Pwned
+  url: https://haveibeenpwned.com/API/Key
+currency: USD
+billingModels:
+  - id: monthly-subscription
+    type: recurring
+    interval: month
+    discountAnnual: 17%
+plans:
+  - id: pwned-1
+    name: Pwned 1
+    description: Entry-tier for individuals and small projects searching small numbers of email addresses.
+    price:
+      amount: 3.95
+      currency: USD
+      interval: month
+    requestsPerMinute: 10
+    domainSearchMaxBreachedAccounts: 25
+    maxBreachedDomains: 10
+    includesStealerLogs: false
+    includesBulkDomainAdd: false
+    includesAutoSubdomainVerification: false
+    includesCustomerDomains: false
+    includesKAnon: false
+    target: Hobbyists, small projects.
+  - id: pwned-2
+    name: Pwned 2
+    description: Mid-volume tier for businesses doing higher B2B email searches with stealer-log access.
+    price:
+      amount: 19.45
+      currency: USD
+      interval: month
+    requestsPerMinute: 50
+    domainSearchMaxBreachedAccounts: 100
+    maxBreachedDomains: 25
+    includesStealerLogs: true
+    includesBulkDomainAdd: false
+    includesAutoSubdomainVerification: false
+    includesCustomerDomains: false
+    includesKAnon: true
+    target: SMB security teams and IT consultancies.
+  - id: pwned-3
+    name: Pwned 3
+    description: High-volume tier for security vendors integrating breach data into products.
+    price:
+      amount: 109
+      currency: USD
+      interval: month
+    requestsPerMinute: 500
+    domainSearchMaxBreachedAccounts: 500
+    maxBreachedDomains: 100
+    includesStealerLogs: true
+    includesBulkDomainAdd: true
+    includesAutoSubdomainVerification: true
+    includesCustomerDomains: false
+    includesKAnon: true
+    target: Security vendors, MSSPs.
+  - id: pwned-4
+    name: Pwned 4
+    description: Enterprise tier with auto subdomain verification and large monitored domain sets.
+    price:
+      amount: 275
+      currency: USD
+      interval: month
+    requestsPerMinute: 1000
+    domainSearchMaxBreachedAccounts: 2000
+    maxBreachedDomains: 500
+    includesStealerLogs: true
+    includesBulkDomainAdd: true
+    includesAutoSubdomainVerification: true
+    includesCustomerDomains: true
+    includesKAnon: true
+    target: Mid-to-large enterprises.
+  - id: pwned-5
+    name: Pwned 5
+    description: Top-tier for high-throughput consumer-protection platforms and identity vendors.
+    price:
+      amount: 995
+      currency: USD
+      interval: month
+    requestsPerMinute: 5000
+    domainSearchMaxBreachedAccounts: 10000
+    maxBreachedDomains: null
+    includesStealerLogs: true
+    includesBulkDomainAdd: true
+    includesAutoSubdomainVerification: true
+    includesCustomerDomains: true
+    includesKAnon: true
+    target: Identity protection platforms, large breach-notification SaaS.
+  - id: pwned-passwords-free
+    name: Pwned Passwords (Free)
+    description: Free, unauthenticated k-anonymity password lookup API at api.pwnedpasswords.com.
+    price:
+      amount: 0
+      currency: USD
+      interval: month
+    requestsPerMinute: null
+    requiresAuthentication: false
+    notes: |
+      Always free, no key required. Funded by Cloudflare. Rate limits are not formally
+      enforced; abusive usage may be throttled at the CDN edge.
+freeOffers:
+  - name: Public Breach Search
+    description: /breaches, /breach/{name}, /latestbreach, /dataclasses are free and unauthenticated.
+  - name: Pwned Passwords
+    description: Free k-anonymity password search at api.pwnedpasswords.com.
+notes: |
+  Pricing reflects the public Pwned 1-5 ladder. Annual billing carries a discount.
+  Refunds are not offered after the first 24 hours of a billing period.
+references:
+  - https://haveibeenpwned.com/API/Key
+  - https://haveibeenpwned.com/API/v3

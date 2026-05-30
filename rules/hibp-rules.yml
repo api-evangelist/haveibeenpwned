@@ -1,0 +1,121 @@
+extends: [[spectral:oas, all]]
+documentationUrl: https://haveibeenpwned.com/API/v3
+formats:
+  - oas3
+rules:
+  # Operations
+  hibp-operation-summary-required:
+    description: Every operation MUST have a summary string using Title Case.
+    given: $.paths[*][get,post,put,patch,delete]
+    severity: error
+    then:
+      field: summary
+      function: truthy
+
+  hibp-operation-description-required:
+    description: Every operation MUST have a description.
+    given: $.paths[*][get,post,put,patch,delete]
+    severity: warn
+    then:
+      field: description
+      function: truthy
+
+  hibp-operation-id-required:
+    description: Every operation MUST declare an operationId.
+    given: $.paths[*][get,post,put,patch,delete]
+    severity: error
+    then:
+      field: operationId
+      function: truthy
+
+  hibp-operation-tag-required:
+    description: Every operation MUST be tagged exactly once.
+    given: $.paths[*][get,post,put,patch,delete]
+    severity: warn
+    then:
+      field: tags
+      function: length
+      functionOptions:
+        min: 1
+        max: 1
+
+  # Authentication conventions
+  hibp-api-key-security-scheme:
+    description: HIBP authenticated endpoints MUST use the hibp-api-key header security scheme.
+    given: $.components.securitySchemes.ApiKeyAuth
+    severity: error
+    then:
+      - field: type
+        function: pattern
+        functionOptions: { match: '^apiKey$' }
+      - field: in
+        function: pattern
+        functionOptions: { match: '^header$' }
+      - field: name
+        function: pattern
+        functionOptions: { match: '^hibp-api-key$' }
+
+  # User-Agent requirement
+  hibp-user-agent-documented:
+    description: The info.description SHOULD remind clients of the mandatory user-agent header.
+    given: $.info.description
+    severity: warn
+    then:
+      function: pattern
+      functionOptions: { match: 'user-agent' }
+
+  # Response coverage
+  hibp-401-on-authenticated-paths:
+    description: Authenticated endpoints SHOULD document a 401 response.
+    given: $.paths[?(@property != '/breaches' && @property != '/dataclasses' && @property != '/latestbreach' && @property.indexOf('/breach/') < 0)][get,post,put,patch,delete].responses
+    severity: warn
+    then:
+      field: '401'
+      function: truthy
+
+  hibp-429-rate-limit-response:
+    description: Authenticated endpoints SHOULD document a 429 Too Many Requests response.
+    given: $.paths[*][get].responses
+    severity: warn
+    then:
+      field: '429'
+      function: truthy
+
+  # Naming
+  hibp-pascal-case-schemas:
+    description: Schema names MUST be PascalCase.
+    given: $.components.schemas[*]~
+    severity: warn
+    then:
+      function: pattern
+      functionOptions: { match: '^[A-Z][A-Za-z0-9]+$' }
+
+  # Path conventions
+  hibp-path-lowercase:
+    description: HIBP path segments MUST be lowercase (the API is case-insensitive but canonical form is lowercase).
+    given: $.paths[*]~
+    severity: warn
+    then:
+      function: pattern
+      functionOptions: { match: '^/[a-z0-9{}/_.-]+$' }
+
+  # Cross-cutting
+  hibp-contact-required:
+    description: info.contact MUST be present and include a URL.
+    given: $.info.contact
+    severity: error
+    then:
+      - field: name
+        function: truthy
+      - field: url
+        function: truthy
+
+  hibp-license-required:
+    description: HIBP API MUST be tagged with the CC 4.0 license.
+    given: $.info.license
+    severity: error
+    then:
+      - field: name
+        function: truthy
+      - field: url
+        function: truthy

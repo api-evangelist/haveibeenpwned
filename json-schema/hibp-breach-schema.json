@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://haveibeenpwned.com/schemas/breach.json",
+  "title": "Breach",
+  "description": "Metadata record describing a single breach loaded into Have I Been Pwned.",
+  "type": "object",
+  "required": ["Name", "Title", "Domain", "BreachDate", "AddedDate", "ModifiedDate", "PwnCount"],
+  "properties": {
+    "Name": { "type": "string", "description": "Stable Pascal-cased identifier; never changes." },
+    "Title": { "type": "string", "description": "Descriptive breach title suitable for UI display." },
+    "Domain": { "type": "string", "description": "Primary website domain associated with the breach." },
+    "BreachDate": { "type": "string", "format": "date", "description": "Approximate date the breach occurred." },
+    "AddedDate": { "type": "string", "format": "date-time", "description": "When the breach was loaded into HIBP." },
+    "ModifiedDate": { "type": "string", "format": "date-time", "description": "Last modification timestamp." },
+    "PwnCount": { "type": "integer", "minimum": 0, "description": "Approximate email addresses loaded for the breach." },
+    "Description": { "type": "string", "description": "HTML-formatted description of the breach." },
+    "DataClasses": { "type": "array", "items": { "type": "string" }, "description": "Alphabetically ordered list of data classes exposed." },
+    "IsVerified": { "type": "boolean" },
+    "IsFabricated": { "type": "boolean" },
+    "IsSensitive": { "type": "boolean" },
+    "IsRetired": { "type": "boolean" },
+    "IsSpamList": { "type": "boolean" },
+    "IsMalware": { "type": "boolean" },
+    "IsStealerLog": { "type": "boolean" },
+    "IsSubscriptionFree": { "type": "boolean" },
+    "LogoPath": { "type": "string", "format": "uri" },
+    "Attribution": { "type": "string" }
+  }
+}

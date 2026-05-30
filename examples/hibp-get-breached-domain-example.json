@@ -1,0 +1,18 @@
+{
+  "operation": "getBreachedDomain",
+  "request": {
+    "method": "GET",
+    "url": "https://haveibeenpwned.com/api/v3/breacheddomain/example.com",
+    "headers": {
+      "user-agent": "naftiko-sandbox/1.0",
+      "hibp-api-key": "00000000000000000000000000000000"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "alias1": ["Adobe"],
+      "alias2": ["Adobe", "Gawker"]
+    }
+  }
+}

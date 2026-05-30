@@ -1,0 +1,47 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "hibp": "https://haveibeenpwned.com/vocab#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Breach": "hibp:Breach",
+    "Paste": "hibp:Paste",
+    "SubscribedDomain": "hibp:SubscribedDomain",
+    "SubscriptionStatus": "hibp:SubscriptionStatus",
+    "DataClass": "hibp:DataClass",
+    "StealerLog": "hibp:StealerLog",
+
+    "Name": "schema:name",
+    "Title": "schema:headline",
+    "Domain": { "@id": "hibp:domain", "@type": "xsd:string" },
+    "BreachDate": { "@id": "hibp:breachDate", "@type": "xsd:date" },
+    "AddedDate": { "@id": "hibp:addedDate", "@type": "xsd:dateTime" },
+    "ModifiedDate": { "@id": "schema:dateModified", "@type": "xsd:dateTime" },
+    "PwnCount": { "@id": "hibp:pwnCount", "@type": "xsd:integer" },
+    "Description": "schema:description",
+    "DataClasses": { "@id": "hibp:dataClasses", "@container": "@set" },
+    "IsVerified": { "@id": "hibp:isVerified", "@type": "xsd:boolean" },
+    "IsFabricated": { "@id": "hibp:isFabricated", "@type": "xsd:boolean" },
+    "IsSensitive": { "@id": "hibp:isSensitive", "@type": "xsd:boolean" },
+    "IsRetired": { "@id": "hibp:isRetired", "@type": "xsd:boolean" },
+    "IsSpamList": { "@id": "hibp:isSpamList", "@type": "xsd:boolean" },
+    "IsMalware": { "@id": "hibp:isMalware", "@type": "xsd:boolean" },
+    "IsStealerLog": { "@id": "hibp:isStealerLog", "@type": "xsd:boolean" },
+    "IsSubscriptionFree": { "@id": "hibp:isSubscriptionFree", "@type": "xsd:boolean" },
+    "LogoPath": { "@id": "schema:logo", "@type": "@id" },
+    "Attribution": "schema:creditText",
+
+    "Source": "hibp:source",
+    "Id": "schema:identifier",
+    "Date": { "@id": "schema:datePublished", "@type": "xsd:dateTime" },
+    "EmailCount": { "@id": "hibp:emailCount", "@type": "xsd:integer" },
+
+    "DomainName": { "@id": "hibp:domainName", "@type": "xsd:string" },
+    "NextSubscriptionRenewal": { "@id": "hibp:nextRenewal", "@type": "xsd:dateTime" },
+
+    "SubscriptionName": { "@id": "hibp:subscriptionName", "@type": "xsd:string" },
+    "SubscribedUntil": { "@id": "hibp:subscribedUntil", "@type": "xsd:dateTime" },
+    "Rpm": { "@id": "hibp:requestsPerMinute", "@type": "xsd:integer" }
+  }
+}

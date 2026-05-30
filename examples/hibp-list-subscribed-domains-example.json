@@ -1,0 +1,23 @@
+{
+  "operation": "listSubscribedDomains",
+  "request": {
+    "method": "GET",
+    "url": "https://haveibeenpwned.com/api/v3/subscribeddomains",
+    "headers": {
+      "user-agent": "naftiko-sandbox/1.0",
+      "hibp-api-key": "00000000000000000000000000000000"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "DomainName": "example.com",
+        "PwnCount": 42,
+        "PwnCountExcludingSpamLists": 40,
+        "PwnCountExcludingSpamListsAtLastSubscriptionRenewal": 38,
+        "NextSubscriptionRenewal": "2027-05-30T00:00:00Z"
+      }
+    ]
+  }
+}

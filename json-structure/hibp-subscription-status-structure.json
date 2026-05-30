@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-structure.org/schema",
+  "$id": "https://haveibeenpwned.com/structures/subscription-status.json",
+  "name": "SubscriptionStatus",
+  "type": "object",
+  "description": "Structure of subscription status returned by /subscription/status.",
+  "fields": [
+    { "name": "SubscriptionName", "type": "string" },
+    { "name": "Description", "type": "string" },
+    { "name": "SubscribedUntil", "type": "datetime" },
+    { "name": "Rpm", "type": "integer" },
+    { "name": "DomainSearchMaxBreachedAccounts", "type": "integer" },
+    { "name": "MaxBreachedDomains", "type": "integer", "optional": true },
+    { "name": "IncludesStealerLogs", "type": "boolean" },
+    { "name": "IncludesBulkDomainAdd", "type": "boolean" },
+    { "name": "IncludesAutoSubdomainVerification", "type": "boolean" },
+    { "name": "IncludesCustomerDomains", "type": "boolean" },
+    { "name": "IncludesKAnon", "type": "boolean" }
+  ]
+}

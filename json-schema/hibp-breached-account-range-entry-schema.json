@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://haveibeenpwned.com/schemas/breached-account-range-entry.json",
+  "title": "BreachedAccountRangeEntry",
+  "description": "K-anonymity result entry for /breachedaccount/range/{hashPrefix}.",
+  "type": "object",
+  "required": ["hashSuffix", "websites"],
+  "properties": {
+    "hashSuffix": { "type": "string", "pattern": "^[A-F0-9]{34}$" },
+    "websites": { "type": "array", "items": { "type": "string" } }
+  }
+}

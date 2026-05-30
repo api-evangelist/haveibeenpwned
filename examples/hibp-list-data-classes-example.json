@@ -1,0 +1,25 @@
+{
+  "operation": "listDataClasses",
+  "request": {
+    "method": "GET",
+    "url": "https://haveibeenpwned.com/api/v3/dataclasses",
+    "headers": { "user-agent": "naftiko-sandbox/1.0" }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      "Account balances",
+      "Auth tokens",
+      "Browser user agent details",
+      "Email addresses",
+      "Geographic locations",
+      "IP addresses",
+      "Names",
+      "Passwords",
+      "Phone numbers",
+      "Physical addresses",
+      "Social security numbers",
+      "Usernames"
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+apiCommonsRateLimitsVersion: "0.1"
+provider:
+  id: haveibeenpwned
+  name: Have I Been Pwned
+  url: https://haveibeenpwned.com/API/v3
+scope:
+  - type: per-api-key
+    description: Authenticated endpoints are rate-limited per `hibp-api-key`.
+  - type: per-ip
+    description: Unauthenticated endpoints are rate-limited at the Cloudflare edge per source IP.
+enforcement:
+  responseStatus: 429
+  retryAfterHeader: true
+  description: When throttled, responses include a `retry-after` header containing the seconds to wait.
+policies:
+  - id: pwned-1
+    name: Pwned 1
+    requestsPerMinute: 10
+    appliesTo: [breachedaccount, pasteaccount, breaches, breach, dataclasses, latestbreach, subscription]
+  - id: pwned-2
+    name: Pwned 2
+    requestsPerMinute: 50
+    appliesTo: [breachedaccount, pasteaccount, breacheddomain, subscribeddomains, stealerlogsbyemail, stealerlogsbywebsitedomain, stealerlogsbyemaildomain, breachedaccount/range]
+  - id: pwned-3
+    name: Pwned 3
+    requestsPerMinute: 500
+  - id: pwned-4
+    name: Pwned 4
+    requestsPerMinute: 1000
+  - id: pwned-5
+    name: Pwned 5
+    requestsPerMinute: 5000
+  - id: stealer-logs
+    name: Stealer Log Endpoints
+    appliesTo: [stealerlogsbyemail, stealerlogsbywebsitedomain, stealerlogsbyemaildomain]
+    notes: Stealer-log endpoints have an independent rate-limit pool that is lower than the breach endpoints.
+  - id: pwned-passwords
+    name: Pwned Passwords
+    requestsPerMinute: null
+    notes: Free, no published per-minute cap; subject to Cloudflare abuse mitigation.
+quotas:
+  - id: domainSearchMaxBreachedAccounts
+    description: Maximum breached accounts returned by a single domain search.
+    perPlan:
+      pwned-1: 25
+      pwned-2: 100
+      pwned-3: 500
+      pwned-4: 2000
+      pwned-5: 10000
+  - id: maxBreachedDomains
+    description: Maximum number of domains the subscription can monitor.
+    perPlan:
+      pwned-1: 10
+      pwned-2: 25
+      pwned-3: 100
+      pwned-4: 500
+      pwned-5: null
+required_headers:
+  - name: user-agent
+    description: Mandatory; requests without a descriptive user-agent return 403.
+references:
+  - https://haveibeenpwned.com/API/v3
+  - https://haveibeenpwned.com/API/Key

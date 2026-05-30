@@ -1,0 +1,18 @@
+{
+  "operation": "getBreachesByRange",
+  "request": {
+    "method": "GET",
+    "url": "https://haveibeenpwned.com/api/v3/breachedaccount/range/B7B889",
+    "headers": {
+      "user-agent": "naftiko-sandbox/1.0",
+      "hibp-api-key": "00000000000000000000000000000000"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      { "hashSuffix": "8A0EBF7185A2F0E5AB2D0F2BBCDB37C4B5D2B", "websites": ["Adobe", "Gawker"] },
+      { "hashSuffix": "F4C3E2A1D6B7C8E9F0A1B2C3D4E5F6A7B8C9D", "websites": ["LinkedIn"] }
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "operation": "getLatestBreach",
+  "request": {
+    "method": "GET",
+    "url": "https://haveibeenpwned.com/api/v3/latestbreach",
+    "headers": { "user-agent": "naftiko-sandbox/1.0" }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "Name": "ExampleCorp",
+      "Title": "Example Corp",
+      "Domain": "examplecorp.com",
+      "BreachDate": "2026-05-15",
+      "AddedDate": "2026-05-28T12:00:00Z",
+      "ModifiedDate": "2026-05-28T12:00:00Z",
+      "PwnCount": 1234567,
+      "Description": "<p>Most recently added breach example.</p>",
+      "DataClasses": ["Email addresses", "Passwords"],
+      "IsVerified": true,
+      "IsFabricated": false,
+      "IsSensitive": false,
+      "IsRetired": false,
+      "IsSpamList": false,
+      "IsMalware": false,
+      "IsStealerLog": false,
+      "IsSubscriptionFree": false,
+      "LogoPath": "https://haveibeenpwned.com/Content/Images/PwnedLogos/ExampleCorp.png"
+    }
+  }
+}

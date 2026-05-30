@@ -1,0 +1,27 @@
+{
+  "operation": "getSubscriptionStatus",
+  "request": {
+    "method": "GET",
+    "url": "https://haveibeenpwned.com/api/v3/subscription/status",
+    "headers": {
+      "user-agent": "naftiko-sandbox/1.0",
+      "hibp-api-key": "00000000000000000000000000000000"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "SubscriptionName": "Pwned 2",
+      "Description": "Suitable for businesses doing higher volume B2B searches.",
+      "SubscribedUntil": "2027-05-30T00:00:00Z",
+      "Rpm": 100,
+      "DomainSearchMaxBreachedAccounts": 50000,
+      "MaxBreachedDomains": 50,
+      "IncludesStealerLogs": true,
+      "IncludesBulkDomainAdd": false,
+      "IncludesAutoSubdomainVerification": false,
+      "IncludesCustomerDomains": false,
+      "IncludesKAnon": true
+    }
+  }
+}

@@ -1,0 +1,45 @@
+version: "0.1"
+name: domain-monitoring
+description: |
+  Workflow capability that monitors a domain you own: verifies ownership if needed,
+  lists exposed aliases from breaches, and surfaces stealer-log aliases. Used to feed
+  Naftiko's continuous domain-risk monitor.
+inputs:
+  - name: domain
+    type: string
+    required: true
+  - name: verify_via
+    type: string
+    enum: [dns, email]
+    default: dns
+  - name: verify_email_alias
+    type: string
+    default: security
+steps:
+  - id: verify-dns
+    when: "{{ verify_via == 'dns' }}"
+    capability: hibp.domain.dns.generate
+    with:
+      DomainName: "{{ domain }}"
+  - id: verify-email
+    when: "{{ verify_via == 'email' }}"
+    capability: hibp.domain.email.verify
+    with:
+      DomainName: "{{ domain }}"
+      EmailAlias: "{{ verify_email_alias }}"
+  - id: list-breached-aliases
+    capability: hibp.domain.breached
+    with:
+      domain: "{{ domain }}"
+  - id: list-stealer-aliases
+    capability: hibp.stealerlogs.byEmailDomain
+    with:
+      domain: "{{ domain }}"
+    on_error: continue
+outputs:
+  - name: domain
+    value: "{{ domain }}"
+  - name: breached_aliases
+    value: "{{ steps.list-breached-aliases.body }}"
+  - name: stealer_aliases
+    value: "{{ steps.list-stealer-aliases.body }}"

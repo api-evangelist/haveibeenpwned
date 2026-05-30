@@ -1,32 +1,246 @@
 aid: haveibeenpwned
 name: HaveIBeenPwned
-description: "Passwords which have previously been exposed in data breaches"
+description: >-
+  Have I Been Pwned (HIBP) is Troy Hunt's free breach-notification and credential-exposure
+  service. The HIBP API v3 lets clients search for email addresses, pastes, stealer-log
+  entries, and monitored domains across the world's largest aggregated breach corpus. A
+  separate free k-anonymity password lookup is offered at api.pwnedpasswords.com.
 url: https://haveibeenpwned.com/API/v3
 specificationVersion: '0.20'
 created: '2026-05-28'
-modified: '2026-05-28'
+modified: '2026-05-30'
+x-type: company
 x-source: public-apis/public-apis
-x-category: "Security"
-x-tier: 3
-x-tier-reason: bulk-registered-from-public-apis
+x-category: Security
+x-tier: 1
+x-tier-reason: real-profile-with-artifacts
+image: https://haveibeenpwned.com/Content/Images/PwnedLogoLargeFollowed.png
 tags:
   - Security
-  - Public APIs
+  - Breach Notification
+  - Credential Stuffing
+  - Stealer Logs
+  - K-Anonymity
+  - Privacy
+  - Identity
 apis:
-  - name: HaveIBeenPwned
-    description: "Passwords which have previously been exposed in data breaches"
+  - name: HIBP API v3
+    description: >-
+      Authenticated REST API for searching breaches, pastes, stealer logs, and monitored
+      domains. Requires a paid hibp-api-key. Public read endpoints (/breaches, /breach/{name},
+      /latestbreach, /dataclasses) are free and unauthenticated.
     humanURL: https://haveibeenpwned.com/API/v3
-    baseURL: https://haveibeenpwned.com/API/v3
+    baseURL: https://haveibeenpwned.com/api/v3
     tags:
       - Security
+      - Breach
+      - Stealer Logs
     properties:
       - type: Documentation
         url: https://haveibeenpwned.com/API/v3
+      - type: APIReference
+        url: https://haveibeenpwned.com/API/v3
+      - type: Authentication
+        url: https://haveibeenpwned.com/API/Key
+      - type: OpenAPI
+        url: openapi/hibp-openapi.yml
+      - type: JSONSchema
+        url: json-schema/hibp-breach-schema.json
+        title: Breach Schema
+      - type: JSONSchema
+        url: json-schema/hibp-paste-schema.json
+        title: Paste Schema
+      - type: JSONSchema
+        url: json-schema/hibp-subscribed-domain-schema.json
+        title: Subscribed Domain Schema
+      - type: JSONSchema
+        url: json-schema/hibp-subscription-status-schema.json
+        title: Subscription Status Schema
+      - type: JSONSchema
+        url: json-schema/hibp-breached-account-range-entry-schema.json
+        title: Breached Account Range Entry Schema
+      - type: JSONStructure
+        url: json-structure/hibp-breach-structure.json
+        title: Breach Structure
+      - type: JSONStructure
+        url: json-structure/hibp-paste-structure.json
+        title: Paste Structure
+      - type: JSONStructure
+        url: json-structure/hibp-subscription-status-structure.json
+        title: Subscription Status Structure
+      - type: Example
+        url: examples/hibp-get-breaches-for-account-example.json
+      - type: Example
+        url: examples/hibp-get-breaches-by-range-example.json
+      - type: Example
+        url: examples/hibp-list-breaches-example.json
+      - type: Example
+        url: examples/hibp-get-breach-by-name-example.json
+      - type: Example
+        url: examples/hibp-get-latest-breach-example.json
+      - type: Example
+        url: examples/hibp-list-data-classes-example.json
+      - type: Example
+        url: examples/hibp-get-pastes-for-account-example.json
+      - type: Example
+        url: examples/hibp-get-stealer-logs-by-email-example.json
+      - type: Example
+        url: examples/hibp-get-stealer-logs-by-website-domain-example.json
+      - type: Example
+        url: examples/hibp-get-stealer-logs-by-email-domain-example.json
+      - type: Example
+        url: examples/hibp-get-breached-domain-example.json
+      - type: Example
+        url: examples/hibp-list-subscribed-domains-example.json
+      - type: Example
+        url: examples/hibp-get-subscription-status-example.json
+      - type: Example
+        url: examples/hibp-generate-dns-token-example.json
+      - type: RateLimits
+        url: rate-limits/haveibeenpwned-rate-limits.yml
+  - name: Pwned Passwords
+    description: >-
+      Free, unauthenticated k-anonymity API for checking whether a password's SHA-1 (or NTLM)
+      hash appears in the HIBP credential corpus. Funded by Cloudflare; no API key required.
+    humanURL: https://haveibeenpwned.com/API/v3#PwnedPasswords
+    baseURL: https://api.pwnedpasswords.com
+    tags:
+      - Security
+      - Passwords
+      - K-Anonymity
+    properties:
+      - type: Documentation
+        url: https://haveibeenpwned.com/API/v3#PwnedPasswords
+      - type: OpenAPI
+        url: openapi/pwned-passwords-openapi.yml
+      - type: JSONSchema
+        url: json-schema/pwned-passwords-range-result-schema.json
+        title: Range Result Schema
+      - type: Example
+        url: examples/pwned-passwords-search-range-example.json
+      - type: SDK
+        url: https://github.com/HaveIBeenPwned/PwnedPasswordsAzureFunction
+        title: Azure Function Reference Implementation
+      - type: SDK
+        url: https://github.com/HaveIBeenPwned/PwnedPasswordsCloudflareWorker
+        title: Cloudflare Worker Reference Implementation
+      - type: Tools
+        url: https://github.com/HaveIBeenPwned/PwnedPasswordsDownloader
+        title: Pwned Passwords Downloader CLI
 common:
   - type: Website
-    url: https://haveibeenpwned.com/API/v3
+    url: https://haveibeenpwned.com
+  - type: Portal
+    url: https://haveibeenpwned.com
+  - type: SignUp
+    url: https://haveibeenpwned.com/API/Key
+  - type: Pricing
+    url: https://haveibeenpwned.com/API/Key
+  - type: Plans
+    url: plans/haveibeenpwned-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/haveibeenpwned-rate-limits.yml
+  - type: TermsOfService
+    url: https://haveibeenpwned.com/API/v3#License
+  - type: PrivacyPolicy
+    url: https://haveibeenpwned.com/Privacy
+  - type: StatusPage
+    url: https://status.haveibeenpwned.com
+  - type: Blog
+    url: https://www.troyhunt.com
+  - type: GitHubOrganization
+    url: https://github.com/HaveIBeenPwned
+  - type: Support
+    url: https://haveibeenpwned.com/Contact
+  - type: FAQ
+    url: https://haveibeenpwned.com/FAQs
   - type: PublicAPIsListing
     url: https://github.com/public-apis/public-apis
+  - type: SpectralRules
+    url: rules/hibp-rules.yml
+  - type: JSONLD
+    url: json-ld/haveibeenpwned-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/haveibeenpwned-vocabulary.yml
+  - type: NaftikoCapability
+    url: capabilities/shared/hibp-shared.yaml
+    title: Shared HIBP Capabilities
+  - type: NaftikoCapability
+    url: capabilities/account-breach-triage.yaml
+    title: Account Breach Triage Workflow
+  - type: NaftikoCapability
+    url: capabilities/domain-monitoring.yaml
+    title: Domain Monitoring Workflow
+  - type: NaftikoCapability
+    url: capabilities/password-pwned-check.yaml
+    title: Password Pwned Check Workflow
+  - type: Tools
+    url: https://github.com/HaveIBeenPwned/EmailAddressExtractor
+    title: Email Address Extractor (CLI)
+  - type: Tools
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsDownloader
+    title: Pwned Passwords Downloader (CLI)
+  - type: Tools
+    url: https://github.com/HaveIBeenPwned/cloudflare-prometheus-exporter
+    title: Cloudflare Prometheus Exporter
+  - type: Branding
+    url: https://github.com/HaveIBeenPwned/Branding
+  - type: Features
+    data:
+      - name: Email Breach Search
+        description: Lookup all breaches containing an email address.
+      - name: K-Anonymity Email Search
+        description: Privacy-preserving breach lookup by SHA-1 prefix.
+      - name: Paste Search
+        description: Discover paste-site dumps referencing an email.
+      - name: Stealer Log Lookup
+        description: Surface infostealer captures by email, website domain, or email domain.
+      - name: Domain Monitoring
+        description: Subscribe to monitor owned domains via DNS or email verification.
+      - name: Subscribed Domains Inventory
+        description: Inspect monitored domains and pending renewals.
+      - name: Pwned Passwords (Free)
+        description: K-anonymity password compromise lookups with optional response padding.
+      - name: Subscription Tier Introspection
+        description: Inspect the calling key's tier, RPM, and feature flags.
+  - type: UseCases
+    data:
+      - name: Account Takeover Prevention
+        description: Block sign-ups using credentials known to be in public breaches.
+      - name: Incident Response Triage
+        description: Quickly enumerate breaches and pastes touching an affected user.
+      - name: Domain Risk Monitoring
+        description: Continuously detect when a domain's users appear in new breaches.
+      - name: Password Strength Enforcement
+        description: Reject candidate passwords already present in the Pwned Passwords corpus.
+      - name: Stealer Log Notification
+        description: Detect infostealer-captured credentials before adversaries weaponize them.
+  - type: Integrations
+    data:
+      - name: 1Password Watchtower
+        description: 1Password leverages Pwned Passwords to flag compromised credentials.
+      - name: Mozilla Firefox Monitor
+        description: Firefox's breach-notification feature is powered by HIBP.
+      - name: Okta / Auth0
+        description: Identity providers use Pwned Passwords to enforce password policies.
+      - name: Cloudflare
+        description: Cloudflare hosts and accelerates the Pwned Passwords k-anonymity API.
+      - name: Microsoft Entra (Azure AD)
+        description: Banned-password lists can incorporate Pwned Passwords data.
+  - type: Solutions
+    data:
+      - name: Pwned 1
+        description: Entry tier ($3.95/mo) for hobbyists and small projects.
+      - name: Pwned 2
+        description: Mid-volume tier with stealer-log access.
+      - name: Pwned 3
+        description: High-volume tier for security vendors and MSSPs.
+      - name: Pwned 4
+        description: Enterprise tier with auto subdomain verification.
+      - name: Pwned 5
+        description: Top tier ($995/mo) for large identity-protection platforms.
+      - name: Pwned Passwords (Free)
+        description: Always-free k-anonymity password lookup at api.pwnedpasswords.com.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

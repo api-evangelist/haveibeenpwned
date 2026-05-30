@@ -1,0 +1,146 @@
+name: HaveIBeenPwned Vocabulary
+description: |
+  Controlled vocabulary covering the Have I Been Pwned domain. Maps operational
+  capabilities (breach search, paste search, stealer log lookup, domain monitoring,
+  password compromise check) to canonical terms used in the apis.yml, OpenAPI,
+  JSON Schema, JSON-LD context, and Naftiko capability definitions.
+provider:
+  name: Have I Been Pwned
+  url: https://haveibeenpwned.com
+domains:
+  - id: breach
+    label: Breach
+    description: A security incident exposing credentials or PII.
+    terms:
+      - id: breach.name
+        label: Breach Name
+        description: Stable Pascal-cased identifier for a breach.
+        synonyms: [BreachID, BreachKey]
+      - id: breach.title
+        label: Breach Title
+        description: Human-readable, UI-friendly breach name.
+      - id: breach.domain
+        label: Breach Domain
+        description: Primary website affected by the breach.
+      - id: breach.date
+        label: Breach Date
+        description: Approximate date the breach occurred.
+      - id: breach.added
+        label: Added Date
+        description: When the breach was loaded into HIBP.
+      - id: breach.pwnCount
+        label: Pwn Count
+        description: Approximate number of email addresses loaded.
+      - id: breach.verified
+        label: Verified Breach
+        description: HIBP staff have validated the breach data.
+      - id: breach.fabricated
+        label: Fabricated Breach
+        description: Data appears manufactured rather than sourced from an incident.
+      - id: breach.sensitive
+        label: Sensitive Breach
+        description: Breach withheld from public lookups due to sensitivity.
+      - id: breach.spamList
+        label: Spam List
+        description: Source is a marketing/spam list rather than a credential breach.
+      - id: breach.malware
+        label: Malware Sourced
+        description: Breach originates from malware activity.
+      - id: breach.stealerLog
+        label: Stealer Log
+        description: Breach contains infostealer malware capture data.
+  - id: dataclass
+    label: Data Class
+    description: Category of data exposed in a breach.
+    terms:
+      - id: dataclass.email
+        label: Email Addresses
+      - id: dataclass.password
+        label: Passwords
+      - id: dataclass.passwordHints
+        label: Password Hints
+      - id: dataclass.usernames
+        label: Usernames
+      - id: dataclass.names
+        label: Names
+      - id: dataclass.phone
+        label: Phone Numbers
+      - id: dataclass.address
+        label: Physical Addresses
+      - id: dataclass.ip
+        label: IP Addresses
+      - id: dataclass.geo
+        label: Geographic Locations
+      - id: dataclass.ssn
+        label: Social Security Numbers
+      - id: dataclass.authTokens
+        label: Auth Tokens
+  - id: paste
+    label: Paste
+    description: A public dump on a paste service referencing email addresses.
+    terms:
+      - id: paste.source
+        label: Paste Source
+        description: Service hosting the paste (Pastebin, Pastie, Slexy, Ghostbin).
+      - id: paste.emailCount
+        label: Email Count
+        description: Number of email addresses appearing in the paste.
+  - id: stealerLog
+    label: Stealer Log
+    description: Infostealer malware capture exposing domain + credential pairs.
+    terms:
+      - id: stealerLog.byEmail
+        label: Stealer Log By Email
+        description: Domains stolen against a single email address.
+      - id: stealerLog.byWebsite
+        label: Stealer Log By Website
+        description: Emails stolen against a website domain.
+      - id: stealerLog.byEmailDomain
+        label: Stealer Log By Email Domain
+        description: Aliases on a domain and the websites that exposed them.
+  - id: domain
+    label: Domain
+    description: A domain monitored by a subscription.
+    terms:
+      - id: domain.verify.dns
+        label: DNS Verification
+        description: Verify ownership via a TXT record.
+      - id: domain.verify.email
+        label: Email Verification
+        description: Verify ownership via an emailed code to a standard alias.
+      - id: domain.subscribed
+        label: Subscribed Domain
+        description: Domain currently under HIBP monitoring.
+  - id: subscription
+    label: Subscription
+    description: Pwned 1-5 commercial tiers governing rate limit and feature access.
+    terms:
+      - id: subscription.tier
+        label: Subscription Tier
+        synonyms: [Pwned1, Pwned2, Pwned3, Pwned4, Pwned5]
+      - id: subscription.rpm
+        label: Requests Per Minute
+      - id: subscription.maxBreachedDomains
+        label: Maximum Breached Domains
+      - id: subscription.stealerLogs
+        label: Includes Stealer Logs
+      - id: subscription.kAnon
+        label: Includes K-Anonymity
+  - id: password
+    label: Password Compromise
+    description: Pwned Passwords corpus of >800M observed credentials.
+    terms:
+      - id: password.kAnon
+        label: K-Anonymity Range
+        description: Privacy-preserving lookup by 5-char SHA-1 prefix.
+      - id: password.count
+        label: Exposure Count
+        description: Number of times a password hash has been observed across breaches.
+tags:
+  - Security
+  - Breach Notification
+  - Credential Stuffing
+  - Stealer Logs
+  - K-Anonymity
+  - Privacy
+  - Identity

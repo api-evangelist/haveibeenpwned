@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://haveibeenpwned.com/schemas/paste.json",
+  "title": "Paste",
+  "description": "A paste referencing an email address.",
+  "type": "object",
+  "required": ["Source", "Id", "EmailCount"],
+  "properties": {
+    "Source": { "type": "string", "description": "Paste source service (Pastebin, Pastie, Slexy, Ghostbin, etc.)." },
+    "Id": { "type": "string", "description": "Source-specific identifier of the paste." },
+    "Title": { "type": ["string", "null"], "description": "Title of the paste when available." },
+    "Date": { "type": ["string", "null"], "format": "date-time", "description": "Publication timestamp." },
+    "EmailCount": { "type": "integer", "minimum": 0, "description": "Number of email addresses found in the paste." }
+  }
+}

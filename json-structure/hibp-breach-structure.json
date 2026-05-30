@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/schema",
+  "$id": "https://haveibeenpwned.com/structures/breach.json",
+  "name": "Breach",
+  "type": "object",
+  "description": "Breach record structure as returned by the HIBP API.",
+  "fields": [
+    { "name": "Name", "type": "string", "description": "Stable Pascal-cased identifier." },
+    { "name": "Title", "type": "string" },
+    { "name": "Domain", "type": "string" },
+    { "name": "BreachDate", "type": "date" },
+    { "name": "AddedDate", "type": "datetime" },
+    { "name": "ModifiedDate", "type": "datetime" },
+    { "name": "PwnCount", "type": "integer" },
+    { "name": "Description", "type": "string", "format": "html" },
+    { "name": "DataClasses", "type": "list[string]" },
+    { "name": "IsVerified", "type": "boolean" },
+    { "name": "IsFabricated", "type": "boolean" },
+    { "name": "IsSensitive", "type": "boolean" },
+    { "name": "IsRetired", "type": "boolean" },
+    { "name": "IsSpamList", "type": "boolean" },
+    { "name": "IsMalware", "type": "boolean" },
+    { "name": "IsStealerLog", "type": "boolean" },
+    { "name": "IsSubscriptionFree", "type": "boolean" },
+    { "name": "LogoPath", "type": "uri" },
+    { "name": "Attribution", "type": "string", "optional": true }
+  ]
+}

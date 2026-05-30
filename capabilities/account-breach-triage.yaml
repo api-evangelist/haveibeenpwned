@@ -1,0 +1,41 @@
+version: "0.1"
+name: account-breach-triage
+description: |
+  Workflow capability that takes an email address, returns a structured triage record
+  combining breaches, pastes, and stealer log exposure. Designed for incident response
+  and user-facing breach dashboards.
+inputs:
+  - name: email
+    type: string
+    format: email
+    required: true
+  - name: include_unverified
+    type: boolean
+    default: false
+steps:
+  - id: lookup-breaches
+    capability: hibp.account.breaches
+    with:
+      account: "{{ email }}"
+      truncateResponse: false
+      IncludeUnverified: "{{ include_unverified }}"
+  - id: lookup-pastes
+    capability: hibp.paste.account
+    with:
+      account: "{{ email }}"
+  - id: lookup-stealer-logs
+    capability: hibp.stealerlogs.byEmail
+    with:
+      email: "{{ email }}"
+    on_error: continue
+outputs:
+  - name: email
+    value: "{{ email }}"
+  - name: breaches
+    value: "{{ steps.lookup-breaches.body }}"
+  - name: pastes
+    value: "{{ steps.lookup-pastes.body }}"
+  - name: stealer_log_domains
+    value: "{{ steps.lookup-stealer-logs.body }}"
+  - name: severity
+    value: "{{ length(steps.lookup-breaches.body) + length(steps.lookup-pastes.body) }}"

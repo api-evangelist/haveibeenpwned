@@ -1,0 +1,33 @@
+{
+  "operation": "listBreaches",
+  "request": {
+    "method": "GET",
+    "url": "https://haveibeenpwned.com/api/v3/breaches?Domain=adobe.com",
+    "headers": { "user-agent": "naftiko-sandbox/1.0" }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "Name": "Adobe",
+        "Title": "Adobe",
+        "Domain": "adobe.com",
+        "BreachDate": "2013-10-04",
+        "AddedDate": "2013-12-04T00:00:00Z",
+        "ModifiedDate": "2022-05-15T23:52:49Z",
+        "PwnCount": 152445165,
+        "Description": "<p>In October 2013, 153 million Adobe accounts were breached.</p>",
+        "DataClasses": ["Email addresses", "Password hints", "Passwords", "Usernames"],
+        "IsVerified": true,
+        "IsFabricated": false,
+        "IsSensitive": false,
+        "IsRetired": false,
+        "IsSpamList": false,
+        "IsMalware": false,
+        "IsStealerLog": false,
+        "IsSubscriptionFree": false,
+        "LogoPath": "https://haveibeenpwned.com/Content/Images/PwnedLogos/Adobe.png"
+      }
+    ]
+  }
+}

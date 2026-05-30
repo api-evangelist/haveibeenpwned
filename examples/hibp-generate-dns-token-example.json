@@ -1,0 +1,17 @@
+{
+  "operation": "generateDnsToken",
+  "request": {
+    "method": "POST",
+    "url": "https://haveibeenpwned.com/api/v3/domainverification/generateDnsToken",
+    "headers": {
+      "user-agent": "naftiko-sandbox/1.0",
+      "hibp-api-key": "00000000000000000000000000000000",
+      "content-type": "application/json"
+    },
+    "body": { "DomainName": "example.com" }
+  },
+  "response": {
+    "status": 200,
+    "body": { "txtRecordValue": "hibp-verify=dweb_abcdef1234567890" }
+  }
+}

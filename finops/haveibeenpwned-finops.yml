@@ -1,0 +1,55 @@
+focusVersion: "1.0"
+provider:
+  id: haveibeenpwned
+  name: Have I Been Pwned
+  url: https://haveibeenpwned.com/API/Key
+billingSurface:
+  model: tiered-subscription
+  currency: USD
+  invoicingInterval: monthly
+  annualDiscount: true
+  refundWindowHours: 24
+focusMapping:
+  ProviderName: Have I Been Pwned
+  ServiceName: HIBP API
+  ServiceCategory: Security
+  ServiceSubcategory: Breach Intelligence
+  ChargeCategory: Usage
+  ChargeSubcategory: Subscription
+  PricingCategory: Committed
+  PricingQuantityUnit: subscription-month
+  ListUnitPrice: variable-per-plan
+  SkuId: pwned-<n>
+  SkuPriceId: pwned-<n>-monthly
+  BillingCurrency: USD
+  EffectiveCost: subscription_amount
+  ConsumedQuantity: months
+  ConsumedUnit: month
+plans:
+  - sku: pwned-1
+    listUnitPrice: 3.95
+    rpm: 10
+  - sku: pwned-2
+    listUnitPrice: 19.45
+    rpm: 50
+  - sku: pwned-3
+    listUnitPrice: 109.00
+    rpm: 500
+  - sku: pwned-4
+    listUnitPrice: 275.00
+    rpm: 1000
+  - sku: pwned-5
+    listUnitPrice: 995.00
+    rpm: 5000
+notes: |
+  HIBP follows a fixed-fee subscription model rather than per-request metering. FOCUS
+  records should attribute one ConsumedQuantity per subscription month per SKU. Pwned
+  Passwords (free tier) does not produce billing records.
+adjustments:
+  - id: annual-prepay
+    description: Annual prepay offers ~17% discount versus monthly billing.
+  - id: cancellation-refund
+    description: Refunds are honored only within the first 24 hours of a billing period.
+references:
+  - https://haveibeenpwned.com/API/Key
+  - https://focus.finops.org

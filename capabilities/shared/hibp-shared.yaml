@@ -1,0 +1,124 @@
+version: "0.1"
+name: hibp-shared
+description: Shared Naftiko capability primitives for the Have I Been Pwned API v3.
+provider:
+  name: Have I Been Pwned
+  url: https://haveibeenpwned.com/API/v3
+authentication:
+  type: api_key
+  header: hibp-api-key
+  description: 32-character hexadecimal API key obtained at https://haveibeenpwned.com/API/Key.
+required_headers:
+  user-agent: "Mandatory; must accurately describe the consuming application."
+capabilities:
+  - id: hibp.account.breaches
+    summary: Lookup all breaches affecting an email account.
+    method: GET
+    path: /breachedaccount/{account}
+    inputs:
+      - name: account
+        in: path
+        type: string
+        required: true
+      - name: truncateResponse
+        in: query
+        type: boolean
+      - name: domain
+        in: query
+        type: string
+      - name: IncludeUnverified
+        in: query
+        type: boolean
+    outputs:
+      schema_ref: ../json-schema/hibp-breach-schema.json
+  - id: hibp.account.range
+    summary: K-anonymity lookup of breached accounts by SHA-1 prefix.
+    method: GET
+    path: /breachedaccount/range/{hashPrefix}
+    inputs:
+      - name: hashPrefix
+        in: path
+        type: string
+        required: true
+        pattern: "^[A-F0-9]{6}$"
+    outputs:
+      schema_ref: ../json-schema/hibp-breached-account-range-entry-schema.json
+  - id: hibp.breaches.list
+    summary: List all breaches in the HIBP corpus.
+    method: GET
+    path: /breaches
+    auth_required: false
+  - id: hibp.breaches.byName
+    summary: Get a single breach by its Pascal-cased stable name.
+    method: GET
+    path: /breach/{name}
+    auth_required: false
+  - id: hibp.breaches.latest
+    summary: Get the most recently added breach.
+    method: GET
+    path: /latestbreach
+    auth_required: false
+  - id: hibp.dataclasses.list
+    summary: Enumerate the data classes exposed across breaches.
+    method: GET
+    path: /dataclasses
+    auth_required: false
+  - id: hibp.paste.account
+    summary: Lookup pastes referencing an email address.
+    method: GET
+    path: /pasteaccount/{account}
+  - id: hibp.stealerlogs.byEmail
+    summary: Stealer-log domains exposed for an email address (verified domain only).
+    method: GET
+    path: /stealerlogsbyemail/{email}
+  - id: hibp.stealerlogs.byWebsiteDomain
+    summary: Email addresses exposed against a verified website domain.
+    method: GET
+    path: /stealerlogsbywebsitedomain/{domain}
+  - id: hibp.stealerlogs.byEmailDomain
+    summary: Email aliases on a verified domain and the websites that exposed them.
+    method: GET
+    path: /stealerlogsbyemaildomain/{domain}
+  - id: hibp.domain.breached
+    summary: Breached email aliases on a verified domain.
+    method: GET
+    path: /breacheddomain/{domain}
+  - id: hibp.domain.subscribed
+    summary: List domains the subscription is monitoring.
+    method: GET
+    path: /subscribeddomains
+  - id: hibp.domain.dns.generate
+    summary: Generate a DNS TXT verification token for a domain.
+    method: POST
+    path: /domainverification/generateDnsToken
+  - id: hibp.domain.dns.verify
+    summary: Trigger DNS verification of a domain.
+    method: POST
+    path: /domainverification/verifyDnsToken
+  - id: hibp.domain.email.verify
+    summary: Send a verification email to a standard alias on a domain.
+    method: POST
+    path: /domainverification/sendEmail
+  - id: hibp.subscription.status
+    summary: Inspect the calling key's subscription tier and feature flags.
+    method: GET
+    path: /subscription/status
+  - id: pwned-passwords.range
+    summary: K-anonymity lookup of compromised password hashes.
+    method: GET
+    base_url: https://api.pwnedpasswords.com
+    path: /range/{hashPrefix}
+    auth_required: false
+    inputs:
+      - name: hashPrefix
+        in: path
+        type: string
+        required: true
+        pattern: "^[A-F0-9]{5}$"
+      - name: mode
+        in: query
+        type: string
+        enum: [sha1, ntlm]
+      - name: Add-Padding
+        in: header
+        type: boolean

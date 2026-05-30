@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://haveibeenpwned.com/schemas/subscription-status.json",
+  "title": "SubscriptionStatus",
+  "description": "Calling key's subscription state, RPM, and feature flags.",
+  "type": "object",
+  "required": ["SubscriptionName"],
+  "properties": {
+    "SubscriptionName": { "type": "string", "description": "Subscription tier name (Pwned 1, Pwned 2, ...)." },
+    "Description": { "type": "string" },
+    "SubscribedUntil": { "type": "string", "format": "date-time" },
+    "Rpm": { "type": "integer", "minimum": 0 },
+    "DomainSearchMaxBreachedAccounts": { "type": "integer", "minimum": 0 },
+    "MaxBreachedDomains": { "type": ["integer", "null"], "minimum": 0 },
+    "IncludesStealerLogs": { "type": "boolean" },
+    "IncludesBulkDomainAdd": { "type": "boolean" },
+    "IncludesAutoSubdomainVerification": { "type": "boolean" },
+    "IncludesCustomerDomains": { "type": "boolean" },
+    "IncludesKAnon": { "type": "boolean" }
+  }
+}

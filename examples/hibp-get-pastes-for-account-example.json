@@ -1,0 +1,23 @@
+{
+  "operation": "getPastesForAccount",
+  "request": {
+    "method": "GET",
+    "url": "https://haveibeenpwned.com/api/v3/pasteaccount/account-exists%40hibp-integration-tests.com",
+    "headers": {
+      "user-agent": "naftiko-sandbox/1.0",
+      "hibp-api-key": "00000000000000000000000000000000"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "Source": "Pastebin",
+        "Id": "8Q0BvKD8",
+        "Title": "syslog",
+        "Date": "2014-03-04T19:14:54Z",
+        "EmailCount": 139
+      }
+    ]
+  }
+}

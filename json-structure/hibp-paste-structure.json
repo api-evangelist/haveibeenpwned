@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-structure.org/schema",
+  "$id": "https://haveibeenpwned.com/structures/paste.json",
+  "name": "Paste",
+  "type": "object",
+  "description": "Paste entry structure as returned by /pasteaccount.",
+  "fields": [
+    { "name": "Source", "type": "string" },
+    { "name": "Id", "type": "string" },
+    { "name": "Title", "type": "string", "optional": true },
+    { "name": "Date", "type": "datetime", "optional": true },
+    { "name": "EmailCount", "type": "integer" }
+  ]
+}
