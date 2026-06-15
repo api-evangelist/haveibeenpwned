@@ -1,87 +1,125 @@
 # HaveIBeenPwned (haveibeenpwned)
 
-Have I Been Pwned (HIBP) is Troy Hunt's free breach-notification and credential-exposure
-service. The HIBP API v3 lets clients search for email addresses, pastes, stealer-log
-entries, and monitored domains across the world's largest aggregated breach corpus. A
-separate free k-anonymity password lookup is offered at api.pwnedpasswords.com.
+Have I Been Pwned (HIBP) is Troy Hunt's free breach-notification and credential-exposure service. The HIBP API v3 lets clients search for email addresses, pastes, stealer-log entries, and monitored domains across the world's largest aggregated breach corpus. A separate free k-anonymity password lookup is offered at api.pwnedpasswords.com.
 
-**APIs.yml:** [apis.yml](apis.yml)
+**APIs.json:** [https://haveibeenpwned.com/API/v3](https://haveibeenpwned.com/API/v3)
 
-## Type
-- **x-type:** company
-- **x-tier:** 1 (real profile with artifacts)
-- **source:** [public-apis/public-apis](https://github.com/public-apis/public-apis) — category: Security
+## Tags
+
+- Security
+- Breach Notification
+- Credential Stuffing
+- Stealer Logs
+- K-Anonymity
+- Privacy
+- Identity
+
+## Timestamps
+
+- **Created:** 2026-05-28
+- **Modified:** 2026-05-30
 
 ## APIs
 
 ### HIBP API v3
-Authenticated REST API for searching breaches, pastes, stealer logs, and monitored
-domains. Requires a paid `hibp-api-key`. Public read endpoints (`/breaches`,
-`/breach/{name}`, `/latestbreach`, `/dataclasses`) are free and unauthenticated.
 
-- **Documentation:** https://haveibeenpwned.com/API/v3
-- **Authentication:** https://haveibeenpwned.com/API/Key (`hibp-api-key` header)
-- **OpenAPI:** [openapi/hibp-openapi.yml](openapi/hibp-openapi.yml)
+Authenticated REST API for searching breaches, pastes, stealer logs, and monitored domains. Requires a paid hibp-api-key. Public read endpoints (/breaches, /breach/{name}, /latestbreach, /dataclasses) are free and unauthenticated.
+
+- **Human URL:** [https://haveibeenpwned.com/API/v3](https://haveibeenpwned.com/API/v3)
+- **Base URL:** `https://haveibeenpwned.com/api/v3`
+
+#### Tags
+
+- Security
+- Breach
+- Stealer Logs
+
+#### Properties
+
+- [Documentation](https://haveibeenpwned.com/API/v3)
+- [API Reference](https://haveibeenpwned.com/API/v3)
+- [Authentication](https://haveibeenpwned.com/API/Key)
+- [OpenAPI](openapi/hibp-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/hibp.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/hibp.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/hibp-breach-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/hibp-paste-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/hibp-subscribed-domain-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/hibp-subscription-status-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/hibp-breached-account-range-entry-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Structure](json-structure/hibp-breach-structure.json)
+- [JSON Structure](json-structure/hibp-paste-structure.json)
+- [JSON Structure](json-structure/hibp-subscription-status-structure.json)
+- [Example](examples/hibp-get-breaches-for-account-example.json)
+- [Example](examples/hibp-get-breaches-by-range-example.json)
+- [Example](examples/hibp-list-breaches-example.json)
+- [Example](examples/hibp-get-breach-by-name-example.json)
+- [Example](examples/hibp-get-latest-breach-example.json)
+- [Example](examples/hibp-list-data-classes-example.json)
+- [Example](examples/hibp-get-pastes-for-account-example.json)
+- [Example](examples/hibp-get-stealer-logs-by-email-example.json)
+- [Example](examples/hibp-get-stealer-logs-by-website-domain-example.json)
+- [Example](examples/hibp-get-stealer-logs-by-email-domain-example.json)
+- [Example](examples/hibp-get-breached-domain-example.json)
+- [Example](examples/hibp-list-subscribed-domains-example.json)
+- [Example](examples/hibp-get-subscription-status-example.json)
+- [Example](examples/hibp-generate-dns-token-example.json)
+- [Rate Limits](rate-limits/haveibeenpwned-rate-limits.yml)
 
 ### Pwned Passwords
-Free, unauthenticated k-anonymity API for checking whether a password's SHA-1 (or NTLM)
-hash appears in the HIBP credential corpus.
 
-- **Documentation:** https://haveibeenpwned.com/API/v3#PwnedPasswords
-- **OpenAPI:** [openapi/pwned-passwords-openapi.yml](openapi/pwned-passwords-openapi.yml)
+Free, unauthenticated k-anonymity API for checking whether a password's SHA-1 (or NTLM) hash appears in the HIBP credential corpus. Funded by Cloudflare; no API key required.
 
-## Artifacts
+- **Human URL:** [https://haveibeenpwned.com/API/v3#PwnedPasswords](https://haveibeenpwned.com/API/v3#PwnedPasswords)
+- **Base URL:** `https://api.pwnedpasswords.com`
 
-| Type | Count | Path |
-|---|---|---|
-| OpenAPI specs | 2 | [`openapi/`](openapi/) |
-| JSON Schema | 6 | [`json-schema/`](json-schema/) |
-| JSON Structure | 3 | [`json-structure/`](json-structure/) |
-| JSON-LD context | 1 | [`json-ld/`](json-ld/) |
-| Examples | 15 | [`examples/`](examples/) |
-| Spectral rules | 1 | [`rules/`](rules/) |
-| Naftiko capabilities | 4 (1 shared + 3 workflows) | [`capabilities/`](capabilities/) |
-| Vocabulary | 1 | [`vocabulary/`](vocabulary/) |
-| Plans / Pricing | 1 | [`plans/`](plans/) |
-| Rate Limits | 1 | [`rate-limits/`](rate-limits/) |
-| FinOps | 1 | [`finops/`](finops/) |
+#### Tags
 
-## Pricing Tiers
+- Security
+- Passwords
+- K-Anonymity
 
-| Tier | Price (USD/mo) | RPM | Stealer Logs | K-Anon |
-|---|---|---|---|---|
-| Pwned 1 | $3.95 | 10 | no | no |
-| Pwned 2 | $19.45 | 50 | yes | yes |
-| Pwned 3 | $109 | 500 | yes | yes |
-| Pwned 4 | $275 | 1,000 | yes | yes |
-| Pwned 5 | $995 | 5,000 | yes | yes |
-| Pwned Passwords | Free | unlimited | n/a | n/a |
+#### Properties
 
-See [plans/haveibeenpwned-plans-pricing.yml](plans/haveibeenpwned-plans-pricing.yml) and
-[rate-limits/haveibeenpwned-rate-limits.yml](rate-limits/haveibeenpwned-rate-limits.yml)
-for the full breakdown.
+- [Documentation](https://haveibeenpwned.com/API/v3#PwnedPasswords)
+- [OpenAPI](openapi/pwned-passwords-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/pwned-passwords.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/pwned-passwords.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/pwned-passwords-range-result-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Example](examples/pwned-passwords-search-range-example.json)
+- [SDK](https://github.com/HaveIBeenPwned/PwnedPasswordsAzureFunction)
+- [SDK](https://github.com/HaveIBeenPwned/PwnedPasswordsCloudflareWorker)
+- [Tools](https://github.com/HaveIBeenPwned/PwnedPasswordsDownloader)
 
-## GitHub Organization
+## Common Properties
 
-[github.com/HaveIBeenPwned](https://github.com/HaveIBeenPwned) hosts the public reference
-implementations and tooling:
-
-- [PwnedPasswordsAzureFunction](https://github.com/HaveIBeenPwned/PwnedPasswordsAzureFunction) — k-anonymity password API on Azure Functions
-- [PwnedPasswordsCloudflareWorker](https://github.com/HaveIBeenPwned/PwnedPasswordsCloudflareWorker) — Cloudflare Worker implementation
-- [PwnedPasswordsDownloader](https://github.com/HaveIBeenPwned/PwnedPasswordsDownloader) — CLI to download all password hash ranges
-- [EmailAddressExtractor](https://github.com/HaveIBeenPwned/EmailAddressExtractor) — CLI to extract emails from breach files
-- [cloudflare-prometheus-exporter](https://github.com/HaveIBeenPwned/cloudflare-prometheus-exporter) — Operational tooling
-- [Branding](https://github.com/HaveIBeenPwned/Branding) — Logos and brand assets
-- [ux-rebuild](https://github.com/HaveIBeenPwned/ux-rebuild) — UX rebuild collaboration
-
-No first-party MCP server or Claude Code skill is published by HaveIBeenPwned at this time.
-
-## Tags
-Security, Breach Notification, Credential Stuffing, Stealer Logs, K-Anonymity, Privacy, Identity
-
-## Timestamps
-- **Created:** 2026-05-28
-- **Modified:** 2026-05-30
+- [Website](https://haveibeenpwned.com)
+- [Portal](https://haveibeenpwned.com)
+- [Sign Up](https://haveibeenpwned.com/API/Key)
+- [Pricing](https://haveibeenpwned.com/API/Key)
+- [Plans](plans/haveibeenpwned-plans-pricing.yml)
+- [Rate Limits](rate-limits/haveibeenpwned-rate-limits.yml)
+- [Terms of Service](https://haveibeenpwned.com/API/v3#License)
+- [Privacy Policy](https://haveibeenpwned.com/Privacy)
+- [Status Page](https://status.haveibeenpwned.com)
+- [Blog](https://www.troyhunt.com)
+- [GitHub Organization](https://github.com/HaveIBeenPwned)
+- [Support](https://haveibeenpwned.com/Contact)
+- [F A Q](https://haveibeenpwned.com/FAQs)
+- [Public APIs Listing](https://github.com/public-apis/public-apis)
+- [Spectral Rules](rules/hibp-rules.yml)
+- [JSON-LD](json-ld/haveibeenpwned-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Vocabulary](vocabulary/haveibeenpwned-vocabulary.yml)
+- [Tools](https://github.com/HaveIBeenPwned/EmailAddressExtractor)
+- [Tools](https://github.com/HaveIBeenPwned/PwnedPasswordsDownloader)
+- [Tools](https://github.com/HaveIBeenPwned/cloudflare-prometheus-exporter)
+- [Branding](https://github.com/HaveIBeenPwned/Branding)
+- [Features](undefined)
+- [Use Cases](undefined)
+- [Integrations](undefined)
+- [Solutions](undefined)
 
 ## Maintainers
-- **Kin Lane** — kin@apievangelist.com
+
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com

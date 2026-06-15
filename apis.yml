@@ -1,10 +1,9 @@
 aid: haveibeenpwned
 name: HaveIBeenPwned
 description: >-
-  Have I Been Pwned (HIBP) is Troy Hunt's free breach-notification and credential-exposure
-  service. The HIBP API v3 lets clients search for email addresses, pastes, stealer-log
-  entries, and monitored domains across the world's largest aggregated breach corpus. A
-  separate free k-anonymity password lookup is offered at api.pwnedpasswords.com.
+  Have I Been Pwned (HIBP) is Troy Hunt's free breach-notification and credential-exposure service. The HIBP API v3 lets
+  clients search for email addresses, pastes, stealer-log entries, and monitored domains across the world's largest
+  aggregated breach corpus. A separate free k-anonymity password lookup is offered at api.pwnedpasswords.com.
 url: https://haveibeenpwned.com/API/v3
 specificationVersion: '0.20'
 created: '2026-05-28'
@@ -26,9 +25,9 @@ tags:
 apis:
   - name: HIBP API v3
     description: >-
-      Authenticated REST API for searching breaches, pastes, stealer logs, and monitored
-      domains. Requires a paid hibp-api-key. Public read endpoints (/breaches, /breach/{name},
-      /latestbreach, /dataclasses) are free and unauthenticated.
+      Authenticated REST API for searching breaches, pastes, stealer logs, and monitored domains. Requires a paid
+      hibp-api-key. Public read endpoints (/breaches, /breach/{name}, /latestbreach, /dataclasses) are free and
+      unauthenticated.
     humanURL: https://haveibeenpwned.com/API/v3
     baseURL: https://haveibeenpwned.com/api/v3
     tags:
@@ -100,8 +99,8 @@ apis:
         url: rate-limits/haveibeenpwned-rate-limits.yml
   - name: Pwned Passwords
     description: >-
-      Free, unauthenticated k-anonymity API for checking whether a password's SHA-1 (or NTLM)
-      hash appears in the HIBP credential corpus. Funded by Cloudflare; no API key required.
+      Free, unauthenticated k-anonymity API for checking whether a password's SHA-1 (or NTLM) hash appears in the HIBP
+      credential corpus. Funded by Cloudflare; no API key required.
     humanURL: https://haveibeenpwned.com/API/v3#PwnedPasswords
     baseURL: https://api.pwnedpasswords.com
     tags:
@@ -162,18 +161,6 @@ common:
     url: json-ld/haveibeenpwned-context.jsonld
   - type: Vocabulary
     url: vocabulary/haveibeenpwned-vocabulary.yml
-  - type: NaftikoCapability
-    url: capabilities/shared/hibp-shared.yaml
-    title: Shared HIBP Capabilities
-  - type: NaftikoCapability
-    url: capabilities/account-breach-triage.yaml
-    title: Account Breach Triage Workflow
-  - type: NaftikoCapability
-    url: capabilities/domain-monitoring.yaml
-    title: Domain Monitoring Workflow
-  - type: NaftikoCapability
-    url: capabilities/password-pwned-check.yaml
-    title: Password Pwned Check Workflow
   - type: Tools
     url: https://github.com/HaveIBeenPwned/EmailAddressExtractor
     title: Email Address Extractor (CLI)

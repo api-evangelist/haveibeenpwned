@@ -1,0 +1,354 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Have I Been Pwned API v3",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "hibp-api-key",
+      "value": "{{hibp-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Breached Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Breaches For An Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://haveibeenpwned.com/api/v3/breachedaccount/:account",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "URL-encoded email address to search."
+              },
+              {
+                "name": "truncateResponse",
+                "value": "",
+                "type": "query",
+                "description": "When true (default) only breach names are returned. Set false for full breach objects."
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Filter results to breaches against the supplied domain."
+              },
+              {
+                "name": "IncludeUnverified",
+                "value": "",
+                "type": "query",
+                "description": "When true (default), unverified breaches are included in results."
+              }
+            ]
+          },
+          "docs": "Returns all breaches for the supplied email address. Requires a valid `hibp-api-key`\nand a descriptive `user-agent` header.\n"
+        },
+        {
+          "info": {
+            "name": "Get Breaches By K-Anonymity Range",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://haveibeenpwned.com/api/v3/breachedaccount/range/:hashPrefix",
+            "params": [
+              {
+                "name": "hashPrefix",
+                "value": "",
+                "type": "path",
+                "description": "First six characters of the SHA-1 hash of the email address (uppercase)."
+              }
+            ]
+          },
+          "docs": "Returns email-account breach matches using a k-anonymity model. Supply the first six\ncharacters of the SHA-1 hash of the email address. Available on Pwned 2 and higher.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Breaches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Breaches In The System",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://haveibeenpwned.com/api/v3/breaches",
+            "params": [
+              {
+                "name": "Domain",
+                "value": "",
+                "type": "query",
+                "description": "Filter the response to breaches against the supplied domain."
+              },
+              {
+                "name": "IsSpamList",
+                "value": "",
+                "type": "query",
+                "description": "Filter to spam-list breaches only when true."
+              }
+            ]
+          },
+          "docs": "Returns the complete corpus of breaches currently in HIBP."
+        },
+        {
+          "info": {
+            "name": "Get A Single Breach By Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://haveibeenpwned.com/api/v3/breach/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Pascal-cased stable name of the breach (e.g. `Adobe`)."
+              }
+            ]
+          },
+          "docs": "Returns the metadata for a single breach identified by its stable Pascal-cased name."
+        },
+        {
+          "info": {
+            "name": "Get The Most Recently Added Breach",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://haveibeenpwned.com/api/v3/latestbreach"
+          },
+          "docs": "Returns the breach most recently added to HIBP."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data Classes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Data Classes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://haveibeenpwned.com/api/v3/dataclasses"
+          },
+          "docs": "Returns the alphabetically ordered list of data classes that may be exposed in breaches."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pastes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Pastes For An Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://haveibeenpwned.com/api/v3/pasteaccount/:account",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "URL-encoded email address to search."
+              }
+            ]
+          },
+          "docs": "Returns all pastes referencing the supplied email address, sorted chronologically (newest first)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Stealer Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Stealer Log Domains For An Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://haveibeenpwned.com/api/v3/stealerlogsbyemail/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns website domains exposed in stealer log corpora for the supplied email address."
+        },
+        {
+          "info": {
+            "name": "Get Stealer Log Emails For A Website Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://haveibeenpwned.com/api/v3/stealerlogsbywebsitedomain/:domain",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns email addresses exposed against a verified website domain."
+        },
+        {
+          "info": {
+            "name": "Get Stealer Log Aliases For An Email Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://haveibeenpwned.com/api/v3/stealerlogsbyemaildomain/:domain",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns email aliases (and the website domains exposing them) for the supplied verified email domain."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Domain Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Breached Email Addresses For A Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://haveibeenpwned.com/api/v3/breacheddomain/:domain",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns email aliases on the supplied verified domain that appear in breaches."
+        },
+        {
+          "info": {
+            "name": "List Subscribed Domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://haveibeenpwned.com/api/v3/subscribeddomains"
+          },
+          "docs": "Returns the domains the calling subscription is currently monitoring."
+        },
+        {
+          "info": {
+            "name": "Generate A DNS Verification Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://haveibeenpwned.com/api/v3/domainverification/generateDnsToken",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a DNS TXT record value used to verify ownership of a domain."
+        },
+        {
+          "info": {
+            "name": "Verify A DNS Verification Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://haveibeenpwned.com/api/v3/domainverification/verifyDnsToken",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Triggers DNS verification of a previously generated TXT record."
+        },
+        {
+          "info": {
+            "name": "Send A Domain Verification Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://haveibeenpwned.com/api/v3/domainverification/sendEmail",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a verification email to a standard alias on the domain."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscription",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Subscription Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://haveibeenpwned.com/api/v3/subscription/status"
+          },
+          "docs": "Returns details about the calling key's current subscription including RPM and feature flags."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
