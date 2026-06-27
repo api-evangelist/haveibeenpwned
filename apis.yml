@@ -67,33 +67,33 @@ apis:
       - type: JSONStructure
         url: json-structure/hibp-subscription-status-structure.json
         title: Subscription Status Structure
-      - type: Example
+      - type: Examples
         url: examples/hibp-get-breaches-for-account-example.json
-      - type: Example
+      - type: Examples
         url: examples/hibp-get-breaches-by-range-example.json
-      - type: Example
+      - type: Examples
         url: examples/hibp-list-breaches-example.json
-      - type: Example
+      - type: Examples
         url: examples/hibp-get-breach-by-name-example.json
-      - type: Example
+      - type: Examples
         url: examples/hibp-get-latest-breach-example.json
-      - type: Example
+      - type: Examples
         url: examples/hibp-list-data-classes-example.json
-      - type: Example
+      - type: Examples
         url: examples/hibp-get-pastes-for-account-example.json
-      - type: Example
+      - type: Examples
         url: examples/hibp-get-stealer-logs-by-email-example.json
-      - type: Example
+      - type: Examples
         url: examples/hibp-get-stealer-logs-by-website-domain-example.json
-      - type: Example
+      - type: Examples
         url: examples/hibp-get-stealer-logs-by-email-domain-example.json
-      - type: Example
+      - type: Examples
         url: examples/hibp-get-breached-domain-example.json
-      - type: Example
+      - type: Examples
         url: examples/hibp-list-subscribed-domains-example.json
-      - type: Example
+      - type: Examples
         url: examples/hibp-get-subscription-status-example.json
-      - type: Example
+      - type: Examples
         url: examples/hibp-generate-dns-token-example.json
       - type: RateLimits
         url: rate-limits/haveibeenpwned-rate-limits.yml
@@ -115,12 +115,12 @@ apis:
       - type: JSONSchema
         url: json-schema/pwned-passwords-range-result-schema.json
         title: Range Result Schema
-      - type: Example
+      - type: Examples
         url: examples/pwned-passwords-search-range-example.json
-      - type: SDK
+      - type: SDKs
         url: https://github.com/HaveIBeenPwned/PwnedPasswordsAzureFunction
         title: Azure Function Reference Implementation
-      - type: SDK
+      - type: SDKs
         url: https://github.com/HaveIBeenPwned/PwnedPasswordsCloudflareWorker
         title: Cloudflare Worker Reference Implementation
       - type: Tools
@@ -131,7 +131,7 @@ common:
     url: https://haveibeenpwned.com
   - type: Portal
     url: https://haveibeenpwned.com
-  - type: SignUp
+  - type: Signup
     url: https://haveibeenpwned.com/API/Key
   - type: Pricing
     url: https://haveibeenpwned.com/API/Key
