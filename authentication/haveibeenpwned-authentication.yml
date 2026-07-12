@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/hibp-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: hibp-api-key
+  description: |-
+    32-character hexadecimal API key issued at https://haveibeenpwned.com/API/Key.
+    Required for all account, paste, stealer log, domain search, and subscription endpoints.
+  sources:
+  - openapi/hibp-openapi.yml

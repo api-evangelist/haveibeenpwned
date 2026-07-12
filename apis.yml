@@ -127,6 +127,12 @@ apis:
         url: https://github.com/HaveIBeenPwned/PwnedPasswordsDownloader
         title: Pwned Passwords Downloader CLI
 common:
+  - type: VulnerabilityDisclosure
+    url: security/haveibeenpwned-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/haveibeenpwned-domain-security.yml
+  - type: Authentication
+    url: authentication/haveibeenpwned-authentication.yml
   - type: Website
     url: https://haveibeenpwned.com
   - type: Portal
