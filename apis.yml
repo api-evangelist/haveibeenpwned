@@ -127,6 +127,8 @@ apis:
         url: https://github.com/HaveIBeenPwned/PwnedPasswordsDownloader
         title: Pwned Passwords Downloader CLI
 common:
+  - type: AgenticAccess
+    url: agentic-access/haveibeenpwned-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/haveibeenpwned-vulnerability-disclosure.yml
   - type: DomainSecurity
