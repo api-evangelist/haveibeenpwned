@@ -1,0 +1,285 @@
+openapi: 3.0.3
+info:
+  title: Have I Been Pwned API v3 Breached Accounts API
+  description: 'The Have I Been Pwned (HIBP) API allows the list of pwned accounts (email addresses, domains,
+
+    passwords, and stealer log entries) to be quickly searched via REST. Authenticated endpoints
+
+    require an `hibp-api-key` header. All requests must send a `user-agent` header that accurately
+
+    identifies the consuming application. Subscriptions range from Pwned 1 to Pwned 5.
+
+    '
+  version: 3.0.0
+  contact:
+    name: Have I Been Pwned
+    url: https://haveibeenpwned.com/API/v3
+  license:
+    name: Creative Commons Attribution 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+servers:
+- url: https://haveibeenpwned.com/api/v3
+  description: HIBP Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Breached Accounts
+  description: Lookup breaches affecting an email address.
+paths:
+  /breachedaccount/{account}:
+    get:
+      tags:
+      - Breached Accounts
+      summary: Get Breaches For An Account
+      description: 'Returns all breaches for the supplied email address. Requires a valid `hibp-api-key`
+
+        and a descriptive `user-agent` header.
+
+        '
+      operationId: getBreachesForAccount
+      parameters:
+      - $ref: '#/components/parameters/AccountPath'
+      - name: truncateResponse
+        in: query
+        description: When true (default) only breach names are returned. Set false for full breach objects.
+        required: false
+        schema:
+          type: boolean
+          default: true
+      - name: domain
+        in: query
+        description: Filter results to breaches against the supplied domain.
+        required: false
+        schema:
+          type: string
+      - name: IncludeUnverified
+        in: query
+        description: When true (default), unverified breaches are included in results.
+        required: false
+        schema:
+          type: boolean
+          default: true
+      responses:
+        '200':
+          description: One or more breaches were found.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                  - $ref: '#/components/schemas/BreachName'
+                  - $ref: '#/components/schemas/Breach'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /breachedaccount/range/{hashPrefix}:
+    get:
+      tags:
+      - Breached Accounts
+      summary: Get Breaches By K-Anonymity Range
+      description: 'Returns email-account breach matches using a k-anonymity model. Supply the first six
+
+        characters of the SHA-1 hash of the email address. Available on Pwned 2 and higher.
+
+        '
+      operationId: getBreachesByRange
+      parameters:
+      - name: hashPrefix
+        in: path
+        required: true
+        description: First six characters of the SHA-1 hash of the email address (uppercase).
+        schema:
+          type: string
+          pattern: ^[A-F0-9]{6}$
+      responses:
+        '200':
+          description: A list of hash suffixes and the websites that exposed them.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BreachedAccountRangeEntry'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  responses:
+    Unauthorized:
+      description: The `hibp-api-key` header is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: 'Rate limit exceeded. Inspect the `retry-after` header to determine when to retry.
+
+        '
+      headers:
+        retry-after:
+          schema:
+            type: integer
+          description: Seconds to wait before retrying.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed (e.g. invalid email format).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: No record matched the supplied identifier.
+    Forbidden:
+      description: 'The request is forbidden. Common causes include a missing `user-agent` header,
+
+        querying an unverified domain, or a feature not included in the calling subscription.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Breach:
+      type: object
+      description: Full metadata record describing a breach in HIBP.
+      properties:
+        Name:
+          type: string
+          description: Stable Pascal-cased identifier; never changes.
+        Title:
+          type: string
+          description: Descriptive breach title suitable for UI display.
+        Domain:
+          type: string
+          description: Primary website domain associated with the breach.
+        BreachDate:
+          type: string
+          format: date
+          description: Approximate date the breach occurred (ISO 8601).
+        AddedDate:
+          type: string
+          format: date-time
+          description: When the breach was loaded into HIBP.
+        ModifiedDate:
+          type: string
+          format: date-time
+          description: Last modification timestamp; always greater than or equal to AddedDate.
+        PwnCount:
+          type: integer
+          description: Approximate number of email addresses loaded for the breach.
+        Description:
+          type: string
+          description: HTML-formatted description of the breach.
+        DataClasses:
+          type: array
+          items:
+            type: string
+          description: Alphabetically ordered list of data classes exposed in the breach.
+        IsVerified:
+          type: boolean
+          description: Whether the breach has been verified.
+        IsFabricated:
+          type: boolean
+          description: Whether the breach data is likely fabricated.
+        IsSensitive:
+          type: boolean
+          description: Whether the breach is flagged sensitive (not returned in public APIs).
+        IsRetired:
+          type: boolean
+          description: Whether the breach has been retired from public listings.
+        IsSpamList:
+          type: boolean
+          description: Whether the source is a spam list rather than a credential breach.
+        IsMalware:
+          type: boolean
+          description: Whether the breach originates from malware activity.
+        IsStealerLog:
+          type: boolean
+          description: Whether the breach is sourced from stealer logs.
+        IsSubscriptionFree:
+          type: boolean
+          description: Whether the breach is queryable without an HIBP subscription.
+        LogoPath:
+          type: string
+          format: uri
+          description: URI to the breach logo PNG.
+        Attribution:
+          type: string
+          description: Optional human-readable attribution for the breach source.
+      required:
+      - Name
+      - Title
+      - Domain
+      - BreachDate
+      - AddedDate
+      - ModifiedDate
+      - PwnCount
+    Error:
+      type: object
+      description: Standard HIBP error payload.
+      properties:
+        statusCode:
+          type: integer
+        message:
+          type: string
+      required:
+      - statusCode
+      - message
+    BreachedAccountRangeEntry:
+      type: object
+      description: A k-anonymity breached-account match.
+      properties:
+        hashSuffix:
+          type: string
+          description: Remaining 34 characters of the SHA-1 hash of the email address.
+        websites:
+          type: array
+          items:
+            type: string
+          description: Breach names that contain the matching email address.
+      required:
+      - hashSuffix
+      - websites
+    BreachName:
+      type: object
+      description: Truncated breach representation returned by default from /breachedaccount.
+      properties:
+        Name:
+          type: string
+          description: Pascal-cased stable name of the breach.
+      required:
+      - Name
+  parameters:
+    AccountPath:
+      name: account
+      in: path
+      required: true
+      description: URL-encoded email address to search.
+      schema:
+        type: string
+        format: email
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: hibp-api-key
+      description: '32-character hexadecimal API key issued at https://haveibeenpwned.com/API/Key.
+
+        Required for all account, paste, stealer log, domain search, and subscription endpoints.
+
+        '

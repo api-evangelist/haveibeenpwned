@@ -1,0 +1,56 @@
+openapi: 3.0.3
+info:
+  title: Have I Been Pwned API v3 Breached Accounts Data Classes API
+  description: 'The Have I Been Pwned (HIBP) API allows the list of pwned accounts (email addresses, domains,
+
+    passwords, and stealer log entries) to be quickly searched via REST. Authenticated endpoints
+
+    require an `hibp-api-key` header. All requests must send a `user-agent` header that accurately
+
+    identifies the consuming application. Subscriptions range from Pwned 1 to Pwned 5.
+
+    '
+  version: 3.0.0
+  contact:
+    name: Have I Been Pwned
+    url: https://haveibeenpwned.com/API/v3
+  license:
+    name: Creative Commons Attribution 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+servers:
+- url: https://haveibeenpwned.com/api/v3
+  description: HIBP Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Data Classes
+  description: Enumerate classes of data exposed across breaches.
+paths:
+  /dataclasses:
+    get:
+      tags:
+      - Data Classes
+      summary: Get All Data Classes
+      description: Returns the alphabetically ordered list of data classes that may be exposed in breaches.
+      operationId: listDataClasses
+      security: []
+      responses:
+        '200':
+          description: An alphabetically ordered list of data class names.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: hibp-api-key
+      description: '32-character hexadecimal API key issued at https://haveibeenpwned.com/API/Key.
+
+        Required for all account, paste, stealer log, domain search, and subscription endpoints.
+
+        '

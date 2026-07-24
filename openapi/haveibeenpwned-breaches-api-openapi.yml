@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  title: Have I Been Pwned API v3 Breached Accounts Breaches API
+  description: 'The Have I Been Pwned (HIBP) API allows the list of pwned accounts (email addresses, domains,
+
+    passwords, and stealer log entries) to be quickly searched via REST. Authenticated endpoints
+
+    require an `hibp-api-key` header. All requests must send a `user-agent` header that accurately
+
+    identifies the consuming application. Subscriptions range from Pwned 1 to Pwned 5.
+
+    '
+  version: 3.0.0
+  contact:
+    name: Have I Been Pwned
+    url: https://haveibeenpwned.com/API/v3
+  license:
+    name: Creative Commons Attribution 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+servers:
+- url: https://haveibeenpwned.com/api/v3
+  description: HIBP Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Breaches
+  description: Browse breach metadata in the HIBP corpus.
+paths:
+  /breaches:
+    get:
+      tags:
+      - Breaches
+      summary: Get All Breaches In The System
+      description: Returns the complete corpus of breaches currently in HIBP.
+      operationId: listBreaches
+      security: []
+      parameters:
+      - name: Domain
+        in: query
+        description: Filter the response to breaches against the supplied domain.
+        required: false
+        schema:
+          type: string
+      - name: IsSpamList
+        in: query
+        description: Filter to spam-list breaches only when true.
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: All breaches matching the filters.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Breach'
+  /breach/{name}:
+    get:
+      tags:
+      - Breaches
+      summary: Get A Single Breach By Name
+      description: Returns the metadata for a single breach identified by its stable Pascal-cased name.
+      operationId: getBreachByName
+      security: []
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: Pascal-cased stable name of the breach (e.g. `Adobe`).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The breach record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Breach'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /latestbreach:
+    get:
+      tags:
+      - Breaches
+      summary: Get The Most Recently Added Breach
+      description: Returns the breach most recently added to HIBP.
+      operationId: getLatestBreach
+      security: []
+      responses:
+        '200':
+          description: The most recently added breach.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Breach'
+components:
+  responses:
+    NotFound:
+      description: No record matched the supplied identifier.
+  schemas:
+    Breach:
+      type: object
+      description: Full metadata record describing a breach in HIBP.
+      properties:
+        Name:
+          type: string
+          description: Stable Pascal-cased identifier; never changes.
+        Title:
+          type: string
+          description: Descriptive breach title suitable for UI display.
+        Domain:
+          type: string
+          description: Primary website domain associated with the breach.
+        BreachDate:
+          type: string
+          format: date
+          description: Approximate date the breach occurred (ISO 8601).
+        AddedDate:
+          type: string
+          format: date-time
+          description: When the breach was loaded into HIBP.
+        ModifiedDate:
+          type: string
+          format: date-time
+          description: Last modification timestamp; always greater than or equal to AddedDate.
+        PwnCount:
+          type: integer
+          description: Approximate number of email addresses loaded for the breach.
+        Description:
+          type: string
+          description: HTML-formatted description of the breach.
+        DataClasses:
+          type: array
+          items:
+            type: string
+          description: Alphabetically ordered list of data classes exposed in the breach.
+        IsVerified:
+          type: boolean
+          description: Whether the breach has been verified.
+        IsFabricated:
+          type: boolean
+          description: Whether the breach data is likely fabricated.
+        IsSensitive:
+          type: boolean
+          description: Whether the breach is flagged sensitive (not returned in public APIs).
+        IsRetired:
+          type: boolean
+          description: Whether the breach has been retired from public listings.
+        IsSpamList:
+          type: boolean
+          description: Whether the source is a spam list rather than a credential breach.
+        IsMalware:
+          type: boolean
+          description: Whether the breach originates from malware activity.
+        IsStealerLog:
+          type: boolean
+          description: Whether the breach is sourced from stealer logs.
+        IsSubscriptionFree:
+          type: boolean
+          description: Whether the breach is queryable without an HIBP subscription.
+        LogoPath:
+          type: string
+          format: uri
+          description: URI to the breach logo PNG.
+        Attribution:
+          type: string
+          description: Optional human-readable attribution for the breach source.
+      required:
+      - Name
+      - Title
+      - Domain
+      - BreachDate
+      - AddedDate
+      - ModifiedDate
+      - PwnCount
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: hibp-api-key
+      description: '32-character hexadecimal API key issued at https://haveibeenpwned.com/API/Key.
+
+        Required for all account, paste, stealer log, domain search, and subscription endpoints.
+
+        '

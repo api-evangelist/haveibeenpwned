@@ -1,0 +1,219 @@
+openapi: 3.0.3
+info:
+  title: Have I Been Pwned API v3 Breached Accounts Domain Search API
+  description: 'The Have I Been Pwned (HIBP) API allows the list of pwned accounts (email addresses, domains,
+
+    passwords, and stealer log entries) to be quickly searched via REST. Authenticated endpoints
+
+    require an `hibp-api-key` header. All requests must send a `user-agent` header that accurately
+
+    identifies the consuming application. Subscriptions range from Pwned 1 to Pwned 5.
+
+    '
+  version: 3.0.0
+  contact:
+    name: Have I Been Pwned
+    url: https://haveibeenpwned.com/API/v3
+  license:
+    name: Creative Commons Attribution 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+servers:
+- url: https://haveibeenpwned.com/api/v3
+  description: HIBP Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Domain Search
+  description: Verify and search domains you control.
+paths:
+  /breacheddomain/{domain}:
+    get:
+      tags:
+      - Domain Search
+      summary: Get Breached Email Addresses For A Domain
+      description: Returns email aliases on the supplied verified domain that appear in breaches.
+      operationId: getBreachedDomain
+      parameters:
+      - name: domain
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A map of alias to breach names.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /subscribeddomains:
+    get:
+      tags:
+      - Domain Search
+      summary: List Subscribed Domains
+      description: Returns the domains the calling subscription is currently monitoring.
+      operationId: listSubscribedDomains
+      responses:
+        '200':
+          description: A list of subscribed domains.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubscribedDomain'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /domainverification/generateDnsToken:
+    post:
+      tags:
+      - Domain Search
+      summary: Generate A DNS Verification Token
+      description: Generates a DNS TXT record value used to verify ownership of a domain.
+      operationId: generateDnsToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainVerificationRequest'
+      responses:
+        '200':
+          description: A DNS TXT record value.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  txtRecordValue:
+                    type: string
+  /domainverification/verifyDnsToken:
+    post:
+      tags:
+      - Domain Search
+      summary: Verify A DNS Verification Token
+      description: Triggers DNS verification of a previously generated TXT record.
+      operationId: verifyDnsToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainVerificationRequest'
+      responses:
+        '200':
+          description: Domain verification succeeded.
+  /domainverification/sendEmail:
+    post:
+      tags:
+      - Domain Search
+      summary: Send A Domain Verification Email
+      description: Sends a verification email to a standard alias on the domain.
+      operationId: sendDomainVerificationEmail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainEmailVerificationRequest'
+      responses:
+        '200':
+          description: Verification email sent.
+components:
+  schemas:
+    DomainEmailVerificationRequest:
+      type: object
+      properties:
+        DomainName:
+          type: string
+          description: Fully qualified domain to verify.
+        EmailAlias:
+          type: string
+          description: Local part of the email alias (admin, hostmaster, info, security, webmaster).
+      required:
+      - DomainName
+      - EmailAlias
+    SubscribedDomain:
+      type: object
+      description: A domain monitored by the calling subscription.
+      properties:
+        DomainName:
+          type: string
+          description: Fully qualified domain name.
+        PwnCount:
+          type: integer
+          nullable: true
+          description: Total pwned email count on the domain.
+        PwnCountExcludingSpamLists:
+          type: integer
+          nullable: true
+          description: Pwned email count excluding spam lists.
+        PwnCountExcludingSpamListsAtLastSubscriptionRenewal:
+          type: integer
+          nullable: true
+          description: Pwned count excluding spam lists at the last renewal.
+        NextSubscriptionRenewal:
+          type: string
+          format: date-time
+          nullable: true
+          description: Next renewal date for the domain subscription.
+      required:
+      - DomainName
+    Error:
+      type: object
+      description: Standard HIBP error payload.
+      properties:
+        statusCode:
+          type: integer
+        message:
+          type: string
+      required:
+      - statusCode
+      - message
+    DomainVerificationRequest:
+      type: object
+      properties:
+        DomainName:
+          type: string
+          description: Fully qualified domain to verify.
+      required:
+      - DomainName
+  responses:
+    Unauthorized:
+      description: The `hibp-api-key` header is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: No record matched the supplied identifier.
+    Forbidden:
+      description: 'The request is forbidden. Common causes include a missing `user-agent` header,
+
+        querying an unverified domain, or a feature not included in the calling subscription.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: hibp-api-key
+      description: '32-character hexadecimal API key issued at https://haveibeenpwned.com/API/Key.
+
+        Required for all account, paste, stealer log, domain search, and subscription endpoints.
+
+        '

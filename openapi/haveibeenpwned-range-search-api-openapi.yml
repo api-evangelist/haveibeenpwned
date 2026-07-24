@@ -1,0 +1,90 @@
+openapi: 3.0.3
+info:
+  title: Have I Been Pwned API v3 Breached Accounts Range Search API
+  description: 'The Have I Been Pwned (HIBP) API allows the list of pwned accounts (email addresses, domains,
+
+    passwords, and stealer log entries) to be quickly searched via REST. Authenticated endpoints
+
+    require an `hibp-api-key` header. All requests must send a `user-agent` header that accurately
+
+    identifies the consuming application. Subscriptions range from Pwned 1 to Pwned 5.
+
+    '
+  version: 3.0.0
+  contact:
+    name: Have I Been Pwned
+    url: https://haveibeenpwned.com/API/v3
+  license:
+    name: Creative Commons Attribution 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+servers:
+- url: https://haveibeenpwned.com/api/v3
+  description: HIBP Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Range Search
+  description: K-anonymity range search for password hashes.
+paths:
+  /range/{hashPrefix}:
+    get:
+      tags:
+      - Range Search
+      summary: Search By Hash Range
+      description: 'Returns suffixes of all SHA-1 (or NTLM) hashes that begin with the supplied 5-character
+
+        prefix, alongside the number of times each hash was observed in breaches.
+
+        '
+      operationId: searchPasswordRange
+      parameters:
+      - name: hashPrefix
+        in: path
+        required: true
+        description: First 5 characters of the SHA-1 (or NTLM) password hash, uppercase hex.
+        schema:
+          type: string
+          pattern: ^[A-F0-9]{5}$
+      - name: mode
+        in: query
+        required: false
+        description: Hash algorithm. Default is SHA-1; set `ntlm` for NTLM hashes.
+        schema:
+          type: string
+          enum:
+          - sha1
+          - ntlm
+          default: sha1
+      - name: Add-Padding
+        in: header
+        required: false
+        description: When `true`, the response is padded to 800-1,000 entries to mask the response size.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: 'A newline-separated list of `HASHSUFFIX:COUNT` entries. The endpoint always returns
+
+            200; absence of the queried suffix indicates the password is not known to HIBP.
+
+            '
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: '0018A45C4D1DEF81644B54AB7F969B88D65:1
+
+                  00D4F6E8FA6EECAD2A3AA415EEC418D38EC:2
+
+                  '
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: hibp-api-key
+      description: '32-character hexadecimal API key issued at https://haveibeenpwned.com/API/Key.
+
+        Required for all account, paste, stealer log, domain search, and subscription endpoints.
+
+        '

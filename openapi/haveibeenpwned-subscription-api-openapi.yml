@@ -1,0 +1,115 @@
+openapi: 3.0.3
+info:
+  title: Have I Been Pwned API v3 Breached Accounts Subscription API
+  description: 'The Have I Been Pwned (HIBP) API allows the list of pwned accounts (email addresses, domains,
+
+    passwords, and stealer log entries) to be quickly searched via REST. Authenticated endpoints
+
+    require an `hibp-api-key` header. All requests must send a `user-agent` header that accurately
+
+    identifies the consuming application. Subscriptions range from Pwned 1 to Pwned 5.
+
+    '
+  version: 3.0.0
+  contact:
+    name: Have I Been Pwned
+    url: https://haveibeenpwned.com/API/v3
+  license:
+    name: Creative Commons Attribution 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+servers:
+- url: https://haveibeenpwned.com/api/v3
+  description: HIBP Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Subscription
+  description: Inspect the calling key's subscription state.
+paths:
+  /subscription/status:
+    get:
+      tags:
+      - Subscription
+      summary: Get Subscription Status
+      description: Returns details about the calling key's current subscription including RPM and feature flags.
+      operationId: getSubscriptionStatus
+      responses:
+        '200':
+          description: The current subscription details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: The `hibp-api-key` header is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      description: Standard HIBP error payload.
+      properties:
+        statusCode:
+          type: integer
+        message:
+          type: string
+      required:
+      - statusCode
+      - message
+    SubscriptionStatus:
+      type: object
+      description: Details of the calling key's subscription.
+      properties:
+        SubscriptionName:
+          type: string
+          description: Human readable subscription name (e.g. Pwned 1, Pwned 5).
+        Description:
+          type: string
+          description: Subscription description.
+        SubscribedUntil:
+          type: string
+          format: date-time
+          description: Expiration date of the subscription.
+        Rpm:
+          type: integer
+          description: Requests per minute allowed.
+        DomainSearchMaxBreachedAccounts:
+          type: integer
+          description: Maximum breached accounts returned by a domain search.
+        MaxBreachedDomains:
+          type: integer
+          nullable: true
+          description: Maximum number of breached domains monitorable.
+        IncludesStealerLogs:
+          type: boolean
+          description: Whether the subscription unlocks the stealer log APIs.
+        IncludesBulkDomainAdd:
+          type: boolean
+          description: Whether bulk domain add is enabled.
+        IncludesAutoSubdomainVerification:
+          type: boolean
+          description: Whether subdomains auto-verify.
+        IncludesCustomerDomains:
+          type: boolean
+          description: Whether customer domains can be monitored.
+        IncludesKAnon:
+          type: boolean
+          description: Whether k-anonymity endpoints are enabled.
+      required:
+      - SubscriptionName
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: hibp-api-key
+      description: '32-character hexadecimal API key issued at https://haveibeenpwned.com/API/Key.
+
+        Required for all account, paste, stealer log, domain search, and subscription endpoints.
+
+        '

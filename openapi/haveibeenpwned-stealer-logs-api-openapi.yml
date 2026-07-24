@@ -1,0 +1,156 @@
+openapi: 3.0.3
+info:
+  title: Have I Been Pwned API v3 Breached Accounts Stealer Logs API
+  description: 'The Have I Been Pwned (HIBP) API allows the list of pwned accounts (email addresses, domains,
+
+    passwords, and stealer log entries) to be quickly searched via REST. Authenticated endpoints
+
+    require an `hibp-api-key` header. All requests must send a `user-agent` header that accurately
+
+    identifies the consuming application. Subscriptions range from Pwned 1 to Pwned 5.
+
+    '
+  version: 3.0.0
+  contact:
+    name: Have I Been Pwned
+    url: https://haveibeenpwned.com/API/v3
+  license:
+    name: Creative Commons Attribution 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+servers:
+- url: https://haveibeenpwned.com/api/v3
+  description: HIBP Production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Stealer Logs
+  description: Search infostealer malware corpora by email or domain.
+paths:
+  /stealerlogsbyemail/{email}:
+    get:
+      tags:
+      - Stealer Logs
+      summary: Get Stealer Log Domains For An Email
+      description: Returns website domains exposed in stealer log corpora for the supplied email address.
+      operationId: getStealerLogsByEmail
+      parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+          format: email
+      responses:
+        '200':
+          description: An alphabetically ordered list of website domains.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /stealerlogsbywebsitedomain/{domain}:
+    get:
+      tags:
+      - Stealer Logs
+      summary: Get Stealer Log Emails For A Website Domain
+      description: Returns email addresses exposed against a verified website domain.
+      operationId: getStealerLogsByWebsiteDomain
+      parameters:
+      - name: domain
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: An alphabetically ordered list of email addresses.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: email
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /stealerlogsbyemaildomain/{domain}:
+    get:
+      tags:
+      - Stealer Logs
+      summary: Get Stealer Log Aliases For An Email Domain
+      description: Returns email aliases (and the website domains exposing them) for the supplied verified email domain.
+      operationId: getStealerLogsByEmailDomain
+      parameters:
+      - name: domain
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A map of alias to exposed website domains.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  responses:
+    Unauthorized:
+      description: The `hibp-api-key` header is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: No record matched the supplied identifier.
+    Forbidden:
+      description: 'The request is forbidden. Common causes include a missing `user-agent` header,
+
+        querying an unverified domain, or a feature not included in the calling subscription.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      description: Standard HIBP error payload.
+      properties:
+        statusCode:
+          type: integer
+        message:
+          type: string
+      required:
+      - statusCode
+      - message
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: hibp-api-key
+      description: '32-character hexadecimal API key issued at https://haveibeenpwned.com/API/Key.
+
+        Required for all account, paste, stealer log, domain search, and subscription endpoints.
+
+        '
