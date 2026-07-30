@@ -5,6 +5,19 @@ description: >-
   clients search for email addresses, pastes, stealer-log entries, and monitored domains across the world's largest
   aggregated breach corpus. A separate free k-anonymity password lookup is offered at api.pwnedpasswords.com.
 url: https://haveibeenpwned.com/API/v3
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-05-28'
 modified: '2026-05-30'
@@ -23,110 +36,601 @@ tags:
   - Privacy
   - Identity
 apis:
-  - name: HIBP API v3
-    description: >-
-      Authenticated REST API for searching breaches, pastes, stealer logs, and monitored domains. Requires a paid
-      hibp-api-key. Public read endpoints (/breaches, /breach/{name}, /latestbreach, /dataclasses) are free and
-      unauthenticated.
-    humanURL: https://haveibeenpwned.com/API/v3
-    baseURL: https://haveibeenpwned.com/api/v3
-    tags:
-      - Security
-      - Breach
-      - Stealer Logs
-    properties:
-      - type: Documentation
-        url: https://haveibeenpwned.com/API/v3
-      - type: APIReference
-        url: https://haveibeenpwned.com/API/v3
-      - type: Authentication
-        url: https://haveibeenpwned.com/API/Key
-      - type: OpenAPI
-        url: openapi/hibp-openapi.yml
-      - type: JSONSchema
-        url: json-schema/hibp-breach-schema.json
-        title: Breach Schema
-      - type: JSONSchema
-        url: json-schema/hibp-paste-schema.json
-        title: Paste Schema
-      - type: JSONSchema
-        url: json-schema/hibp-subscribed-domain-schema.json
-        title: Subscribed Domain Schema
-      - type: JSONSchema
-        url: json-schema/hibp-subscription-status-schema.json
-        title: Subscription Status Schema
-      - type: JSONSchema
-        url: json-schema/hibp-breached-account-range-entry-schema.json
-        title: Breached Account Range Entry Schema
-      - type: JSONStructure
-        url: json-structure/hibp-breach-structure.json
-        title: Breach Structure
-      - type: JSONStructure
-        url: json-structure/hibp-paste-structure.json
-        title: Paste Structure
-      - type: JSONStructure
-        url: json-structure/hibp-subscription-status-structure.json
-        title: Subscription Status Structure
-      - type: Examples
-        url: examples/hibp-get-breaches-for-account-example.json
-      - type: Examples
-        url: examples/hibp-get-breaches-by-range-example.json
-      - type: Examples
-        url: examples/hibp-list-breaches-example.json
-      - type: Examples
-        url: examples/hibp-get-breach-by-name-example.json
-      - type: Examples
-        url: examples/hibp-get-latest-breach-example.json
-      - type: Examples
-        url: examples/hibp-list-data-classes-example.json
-      - type: Examples
-        url: examples/hibp-get-pastes-for-account-example.json
-      - type: Examples
-        url: examples/hibp-get-stealer-logs-by-email-example.json
-      - type: Examples
-        url: examples/hibp-get-stealer-logs-by-website-domain-example.json
-      - type: Examples
-        url: examples/hibp-get-stealer-logs-by-email-domain-example.json
-      - type: Examples
-        url: examples/hibp-get-breached-domain-example.json
-      - type: Examples
-        url: examples/hibp-list-subscribed-domains-example.json
-      - type: Examples
-        url: examples/hibp-get-subscription-status-example.json
-      - type: Examples
-        url: examples/hibp-generate-dns-token-example.json
-      - type: RateLimits
-        url: rate-limits/haveibeenpwned-rate-limits.yml
-  - name: Pwned Passwords
-    description: >-
-      Free, unauthenticated k-anonymity API for checking whether a password's SHA-1 (or NTLM) hash appears in the HIBP
-      credential corpus. Funded by Cloudflare; no API key required.
-    humanURL: https://haveibeenpwned.com/API/v3#PwnedPasswords
-    baseURL: https://api.pwnedpasswords.com
-    tags:
-      - Security
-      - Passwords
-      - K-Anonymity
-    properties:
-      - type: Documentation
-        url: https://haveibeenpwned.com/API/v3#PwnedPasswords
-      - type: OpenAPI
-        url: openapi/pwned-passwords-openapi.yml
-      - type: JSONSchema
-        url: json-schema/pwned-passwords-range-result-schema.json
-        title: Range Result Schema
-      - type: Examples
-        url: examples/pwned-passwords-search-range-example.json
-      - type: SDKs
-        url: https://github.com/HaveIBeenPwned/PwnedPasswordsAzureFunction
-        title: Azure Function Reference Implementation
-      - type: SDKs
-        url: https://github.com/HaveIBeenPwned/PwnedPasswordsCloudflareWorker
-        title: Cloudflare Worker Reference Implementation
-      - type: Tools
-        url: https://github.com/HaveIBeenPwned/PwnedPasswordsDownloader
-        title: Pwned Passwords Downloader CLI
+- aid: haveibeenpwned:haveibeenpwned-breached-accounts-api
+  name: HaveIBeenPwned Breached Accounts API
+  description: Lookup breaches affecting an email address.
+  humanURL: https://haveibeenpwned.com/API/v3
+  baseURL: https://haveibeenpwned.com/api/v3
+  tags:
+  - Breached Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/haveibeenpwned-breached-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://haveibeenpwned.com/API/v3
+  - type: APIReference
+    url: https://haveibeenpwned.com/API/v3
+  - type: Authentication
+    url: https://haveibeenpwned.com/API/Key
+  - type: JSONSchema
+    url: json-schema/hibp-breach-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-paste-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-subscribed-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-subscription-status-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-breached-account-range-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/hibp-breach-structure.json
+  - type: JSONStructure
+    url: json-structure/hibp-paste-structure.json
+  - type: JSONStructure
+    url: json-structure/hibp-subscription-status-structure.json
+  - type: Examples
+    url: examples/hibp-get-breaches-for-account-example.json
+  - type: Examples
+    url: examples/hibp-get-breaches-by-range-example.json
+  - type: Examples
+    url: examples/hibp-list-breaches-example.json
+  - type: Examples
+    url: examples/hibp-get-breach-by-name-example.json
+  - type: Examples
+    url: examples/hibp-get-latest-breach-example.json
+  - type: Examples
+    url: examples/hibp-list-data-classes-example.json
+  - type: Examples
+    url: examples/hibp-get-pastes-for-account-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-email-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-website-domain-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-email-domain-example.json
+  - type: Examples
+    url: examples/hibp-get-breached-domain-example.json
+  - type: Examples
+    url: examples/hibp-list-subscribed-domains-example.json
+  - type: Examples
+    url: examples/hibp-get-subscription-status-example.json
+  - type: Examples
+    url: examples/hibp-generate-dns-token-example.json
+  - type: RateLimits
+    url: rate-limits/haveibeenpwned-rate-limits.yml
+  - type: Documentation
+    url: https://haveibeenpwned.com/API/v3#PwnedPasswords
+  - type: JSONSchema
+    url: json-schema/pwned-passwords-range-result-schema.json
+  - type: Examples
+    url: examples/pwned-passwords-search-range-example.json
+  - type: SDKs
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsAzureFunction
+  - type: SDKs
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsCloudflareWorker
+  - type: Tools
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsDownloader
+- aid: haveibeenpwned:haveibeenpwned-breaches-api
+  name: HaveIBeenPwned Breaches API
+  description: Browse breach metadata in the HIBP corpus.
+  humanURL: https://haveibeenpwned.com/API/v3
+  baseURL: https://haveibeenpwned.com/api/v3
+  tags:
+  - Breaches
+  properties:
+  - type: OpenAPI
+    url: openapi/haveibeenpwned-breaches-api-openapi.yml
+  - type: Documentation
+    url: https://haveibeenpwned.com/API/v3
+  - type: APIReference
+    url: https://haveibeenpwned.com/API/v3
+  - type: Authentication
+    url: https://haveibeenpwned.com/API/Key
+  - type: JSONSchema
+    url: json-schema/hibp-breach-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-paste-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-subscribed-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-subscription-status-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-breached-account-range-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/hibp-breach-structure.json
+  - type: JSONStructure
+    url: json-structure/hibp-paste-structure.json
+  - type: JSONStructure
+    url: json-structure/hibp-subscription-status-structure.json
+  - type: Examples
+    url: examples/hibp-get-breaches-for-account-example.json
+  - type: Examples
+    url: examples/hibp-get-breaches-by-range-example.json
+  - type: Examples
+    url: examples/hibp-list-breaches-example.json
+  - type: Examples
+    url: examples/hibp-get-breach-by-name-example.json
+  - type: Examples
+    url: examples/hibp-get-latest-breach-example.json
+  - type: Examples
+    url: examples/hibp-list-data-classes-example.json
+  - type: Examples
+    url: examples/hibp-get-pastes-for-account-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-email-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-website-domain-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-email-domain-example.json
+  - type: Examples
+    url: examples/hibp-get-breached-domain-example.json
+  - type: Examples
+    url: examples/hibp-list-subscribed-domains-example.json
+  - type: Examples
+    url: examples/hibp-get-subscription-status-example.json
+  - type: Examples
+    url: examples/hibp-generate-dns-token-example.json
+  - type: RateLimits
+    url: rate-limits/haveibeenpwned-rate-limits.yml
+  - type: Documentation
+    url: https://haveibeenpwned.com/API/v3#PwnedPasswords
+  - type: JSONSchema
+    url: json-schema/pwned-passwords-range-result-schema.json
+  - type: Examples
+    url: examples/pwned-passwords-search-range-example.json
+  - type: SDKs
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsAzureFunction
+  - type: SDKs
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsCloudflareWorker
+  - type: Tools
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsDownloader
+- aid: haveibeenpwned:haveibeenpwned-data-classes-api
+  name: HaveIBeenPwned Data Classes API
+  description: Enumerate classes of data exposed across breaches.
+  humanURL: https://haveibeenpwned.com/API/v3
+  baseURL: https://haveibeenpwned.com/api/v3
+  tags:
+  - Data Classes
+  properties:
+  - type: OpenAPI
+    url: openapi/haveibeenpwned-data-classes-api-openapi.yml
+  - type: Documentation
+    url: https://haveibeenpwned.com/API/v3
+  - type: APIReference
+    url: https://haveibeenpwned.com/API/v3
+  - type: Authentication
+    url: https://haveibeenpwned.com/API/Key
+  - type: JSONSchema
+    url: json-schema/hibp-breach-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-paste-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-subscribed-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-subscription-status-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-breached-account-range-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/hibp-breach-structure.json
+  - type: JSONStructure
+    url: json-structure/hibp-paste-structure.json
+  - type: JSONStructure
+    url: json-structure/hibp-subscription-status-structure.json
+  - type: Examples
+    url: examples/hibp-get-breaches-for-account-example.json
+  - type: Examples
+    url: examples/hibp-get-breaches-by-range-example.json
+  - type: Examples
+    url: examples/hibp-list-breaches-example.json
+  - type: Examples
+    url: examples/hibp-get-breach-by-name-example.json
+  - type: Examples
+    url: examples/hibp-get-latest-breach-example.json
+  - type: Examples
+    url: examples/hibp-list-data-classes-example.json
+  - type: Examples
+    url: examples/hibp-get-pastes-for-account-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-email-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-website-domain-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-email-domain-example.json
+  - type: Examples
+    url: examples/hibp-get-breached-domain-example.json
+  - type: Examples
+    url: examples/hibp-list-subscribed-domains-example.json
+  - type: Examples
+    url: examples/hibp-get-subscription-status-example.json
+  - type: Examples
+    url: examples/hibp-generate-dns-token-example.json
+  - type: RateLimits
+    url: rate-limits/haveibeenpwned-rate-limits.yml
+  - type: Documentation
+    url: https://haveibeenpwned.com/API/v3#PwnedPasswords
+  - type: JSONSchema
+    url: json-schema/pwned-passwords-range-result-schema.json
+  - type: Examples
+    url: examples/pwned-passwords-search-range-example.json
+  - type: SDKs
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsAzureFunction
+  - type: SDKs
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsCloudflareWorker
+  - type: Tools
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsDownloader
+- aid: haveibeenpwned:haveibeenpwned-domain-search-api
+  name: HaveIBeenPwned Domain Search API
+  description: Verify and search domains you control.
+  humanURL: https://haveibeenpwned.com/API/v3
+  baseURL: https://haveibeenpwned.com/api/v3
+  tags:
+  - Domain Search
+  properties:
+  - type: OpenAPI
+    url: openapi/haveibeenpwned-domain-search-api-openapi.yml
+  - type: Documentation
+    url: https://haveibeenpwned.com/API/v3
+  - type: APIReference
+    url: https://haveibeenpwned.com/API/v3
+  - type: Authentication
+    url: https://haveibeenpwned.com/API/Key
+  - type: JSONSchema
+    url: json-schema/hibp-breach-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-paste-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-subscribed-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-subscription-status-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-breached-account-range-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/hibp-breach-structure.json
+  - type: JSONStructure
+    url: json-structure/hibp-paste-structure.json
+  - type: JSONStructure
+    url: json-structure/hibp-subscription-status-structure.json
+  - type: Examples
+    url: examples/hibp-get-breaches-for-account-example.json
+  - type: Examples
+    url: examples/hibp-get-breaches-by-range-example.json
+  - type: Examples
+    url: examples/hibp-list-breaches-example.json
+  - type: Examples
+    url: examples/hibp-get-breach-by-name-example.json
+  - type: Examples
+    url: examples/hibp-get-latest-breach-example.json
+  - type: Examples
+    url: examples/hibp-list-data-classes-example.json
+  - type: Examples
+    url: examples/hibp-get-pastes-for-account-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-email-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-website-domain-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-email-domain-example.json
+  - type: Examples
+    url: examples/hibp-get-breached-domain-example.json
+  - type: Examples
+    url: examples/hibp-list-subscribed-domains-example.json
+  - type: Examples
+    url: examples/hibp-get-subscription-status-example.json
+  - type: Examples
+    url: examples/hibp-generate-dns-token-example.json
+  - type: RateLimits
+    url: rate-limits/haveibeenpwned-rate-limits.yml
+  - type: Documentation
+    url: https://haveibeenpwned.com/API/v3#PwnedPasswords
+  - type: JSONSchema
+    url: json-schema/pwned-passwords-range-result-schema.json
+  - type: Examples
+    url: examples/pwned-passwords-search-range-example.json
+  - type: SDKs
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsAzureFunction
+  - type: SDKs
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsCloudflareWorker
+  - type: Tools
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsDownloader
+- aid: haveibeenpwned:haveibeenpwned-pastes-api
+  name: HaveIBeenPwned Pastes API
+  description: Lookup pastes referencing an email address.
+  humanURL: https://haveibeenpwned.com/API/v3
+  baseURL: https://haveibeenpwned.com/api/v3
+  tags:
+  - Pastes
+  properties:
+  - type: OpenAPI
+    url: openapi/haveibeenpwned-pastes-api-openapi.yml
+  - type: Documentation
+    url: https://haveibeenpwned.com/API/v3
+  - type: APIReference
+    url: https://haveibeenpwned.com/API/v3
+  - type: Authentication
+    url: https://haveibeenpwned.com/API/Key
+  - type: JSONSchema
+    url: json-schema/hibp-breach-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-paste-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-subscribed-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-subscription-status-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-breached-account-range-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/hibp-breach-structure.json
+  - type: JSONStructure
+    url: json-structure/hibp-paste-structure.json
+  - type: JSONStructure
+    url: json-structure/hibp-subscription-status-structure.json
+  - type: Examples
+    url: examples/hibp-get-breaches-for-account-example.json
+  - type: Examples
+    url: examples/hibp-get-breaches-by-range-example.json
+  - type: Examples
+    url: examples/hibp-list-breaches-example.json
+  - type: Examples
+    url: examples/hibp-get-breach-by-name-example.json
+  - type: Examples
+    url: examples/hibp-get-latest-breach-example.json
+  - type: Examples
+    url: examples/hibp-list-data-classes-example.json
+  - type: Examples
+    url: examples/hibp-get-pastes-for-account-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-email-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-website-domain-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-email-domain-example.json
+  - type: Examples
+    url: examples/hibp-get-breached-domain-example.json
+  - type: Examples
+    url: examples/hibp-list-subscribed-domains-example.json
+  - type: Examples
+    url: examples/hibp-get-subscription-status-example.json
+  - type: Examples
+    url: examples/hibp-generate-dns-token-example.json
+  - type: RateLimits
+    url: rate-limits/haveibeenpwned-rate-limits.yml
+  - type: Documentation
+    url: https://haveibeenpwned.com/API/v3#PwnedPasswords
+  - type: JSONSchema
+    url: json-schema/pwned-passwords-range-result-schema.json
+  - type: Examples
+    url: examples/pwned-passwords-search-range-example.json
+  - type: SDKs
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsAzureFunction
+  - type: SDKs
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsCloudflareWorker
+  - type: Tools
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsDownloader
+- aid: haveibeenpwned:haveibeenpwned-range-search-api
+  name: HaveIBeenPwned Range Search API
+  description: K-anonymity range search for password hashes.
+  humanURL: https://haveibeenpwned.com/API/v3
+  baseURL: https://haveibeenpwned.com/api/v3
+  tags:
+  - Range Search
+  properties:
+  - type: OpenAPI
+    url: openapi/haveibeenpwned-range-search-api-openapi.yml
+  - type: Documentation
+    url: https://haveibeenpwned.com/API/v3
+  - type: APIReference
+    url: https://haveibeenpwned.com/API/v3
+  - type: Authentication
+    url: https://haveibeenpwned.com/API/Key
+  - type: JSONSchema
+    url: json-schema/hibp-breach-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-paste-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-subscribed-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-subscription-status-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-breached-account-range-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/hibp-breach-structure.json
+  - type: JSONStructure
+    url: json-structure/hibp-paste-structure.json
+  - type: JSONStructure
+    url: json-structure/hibp-subscription-status-structure.json
+  - type: Examples
+    url: examples/hibp-get-breaches-for-account-example.json
+  - type: Examples
+    url: examples/hibp-get-breaches-by-range-example.json
+  - type: Examples
+    url: examples/hibp-list-breaches-example.json
+  - type: Examples
+    url: examples/hibp-get-breach-by-name-example.json
+  - type: Examples
+    url: examples/hibp-get-latest-breach-example.json
+  - type: Examples
+    url: examples/hibp-list-data-classes-example.json
+  - type: Examples
+    url: examples/hibp-get-pastes-for-account-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-email-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-website-domain-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-email-domain-example.json
+  - type: Examples
+    url: examples/hibp-get-breached-domain-example.json
+  - type: Examples
+    url: examples/hibp-list-subscribed-domains-example.json
+  - type: Examples
+    url: examples/hibp-get-subscription-status-example.json
+  - type: Examples
+    url: examples/hibp-generate-dns-token-example.json
+  - type: RateLimits
+    url: rate-limits/haveibeenpwned-rate-limits.yml
+  - type: Documentation
+    url: https://haveibeenpwned.com/API/v3#PwnedPasswords
+  - type: JSONSchema
+    url: json-schema/pwned-passwords-range-result-schema.json
+  - type: Examples
+    url: examples/pwned-passwords-search-range-example.json
+  - type: SDKs
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsAzureFunction
+  - type: SDKs
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsCloudflareWorker
+  - type: Tools
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsDownloader
+- aid: haveibeenpwned:haveibeenpwned-stealer-logs-api
+  name: HaveIBeenPwned Stealer Logs API
+  description: Search infostealer malware corpora by email or domain.
+  humanURL: https://haveibeenpwned.com/API/v3
+  baseURL: https://haveibeenpwned.com/api/v3
+  tags:
+  - Stealer Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/haveibeenpwned-stealer-logs-api-openapi.yml
+  - type: Documentation
+    url: https://haveibeenpwned.com/API/v3
+  - type: APIReference
+    url: https://haveibeenpwned.com/API/v3
+  - type: Authentication
+    url: https://haveibeenpwned.com/API/Key
+  - type: JSONSchema
+    url: json-schema/hibp-breach-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-paste-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-subscribed-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-subscription-status-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-breached-account-range-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/hibp-breach-structure.json
+  - type: JSONStructure
+    url: json-structure/hibp-paste-structure.json
+  - type: JSONStructure
+    url: json-structure/hibp-subscription-status-structure.json
+  - type: Examples
+    url: examples/hibp-get-breaches-for-account-example.json
+  - type: Examples
+    url: examples/hibp-get-breaches-by-range-example.json
+  - type: Examples
+    url: examples/hibp-list-breaches-example.json
+  - type: Examples
+    url: examples/hibp-get-breach-by-name-example.json
+  - type: Examples
+    url: examples/hibp-get-latest-breach-example.json
+  - type: Examples
+    url: examples/hibp-list-data-classes-example.json
+  - type: Examples
+    url: examples/hibp-get-pastes-for-account-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-email-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-website-domain-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-email-domain-example.json
+  - type: Examples
+    url: examples/hibp-get-breached-domain-example.json
+  - type: Examples
+    url: examples/hibp-list-subscribed-domains-example.json
+  - type: Examples
+    url: examples/hibp-get-subscription-status-example.json
+  - type: Examples
+    url: examples/hibp-generate-dns-token-example.json
+  - type: RateLimits
+    url: rate-limits/haveibeenpwned-rate-limits.yml
+  - type: Documentation
+    url: https://haveibeenpwned.com/API/v3#PwnedPasswords
+  - type: JSONSchema
+    url: json-schema/pwned-passwords-range-result-schema.json
+  - type: Examples
+    url: examples/pwned-passwords-search-range-example.json
+  - type: SDKs
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsAzureFunction
+  - type: SDKs
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsCloudflareWorker
+  - type: Tools
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsDownloader
+- aid: haveibeenpwned:haveibeenpwned-subscription-api
+  name: HaveIBeenPwned Subscription API
+  description: Inspect the calling key's subscription state.
+  humanURL: https://haveibeenpwned.com/API/v3
+  baseURL: https://haveibeenpwned.com/api/v3
+  tags:
+  - Subscription
+  properties:
+  - type: OpenAPI
+    url: openapi/haveibeenpwned-subscription-api-openapi.yml
+  - type: Documentation
+    url: https://haveibeenpwned.com/API/v3
+  - type: APIReference
+    url: https://haveibeenpwned.com/API/v3
+  - type: Authentication
+    url: https://haveibeenpwned.com/API/Key
+  - type: JSONSchema
+    url: json-schema/hibp-breach-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-paste-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-subscribed-domain-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-subscription-status-schema.json
+  - type: JSONSchema
+    url: json-schema/hibp-breached-account-range-entry-schema.json
+  - type: JSONStructure
+    url: json-structure/hibp-breach-structure.json
+  - type: JSONStructure
+    url: json-structure/hibp-paste-structure.json
+  - type: JSONStructure
+    url: json-structure/hibp-subscription-status-structure.json
+  - type: Examples
+    url: examples/hibp-get-breaches-for-account-example.json
+  - type: Examples
+    url: examples/hibp-get-breaches-by-range-example.json
+  - type: Examples
+    url: examples/hibp-list-breaches-example.json
+  - type: Examples
+    url: examples/hibp-get-breach-by-name-example.json
+  - type: Examples
+    url: examples/hibp-get-latest-breach-example.json
+  - type: Examples
+    url: examples/hibp-list-data-classes-example.json
+  - type: Examples
+    url: examples/hibp-get-pastes-for-account-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-email-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-website-domain-example.json
+  - type: Examples
+    url: examples/hibp-get-stealer-logs-by-email-domain-example.json
+  - type: Examples
+    url: examples/hibp-get-breached-domain-example.json
+  - type: Examples
+    url: examples/hibp-list-subscribed-domains-example.json
+  - type: Examples
+    url: examples/hibp-get-subscription-status-example.json
+  - type: Examples
+    url: examples/hibp-generate-dns-token-example.json
+  - type: RateLimits
+    url: rate-limits/haveibeenpwned-rate-limits.yml
+  - type: Documentation
+    url: https://haveibeenpwned.com/API/v3#PwnedPasswords
+  - type: JSONSchema
+    url: json-schema/pwned-passwords-range-result-schema.json
+  - type: Examples
+    url: examples/pwned-passwords-search-range-example.json
+  - type: SDKs
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsAzureFunction
+  - type: SDKs
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsCloudflareWorker
+  - type: Tools
+    url: https://github.com/HaveIBeenPwned/PwnedPasswordsDownloader
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/haveibeenpwned/overview
   - type: AgenticAccess
     url: agentic-access/haveibeenpwned-agentic-access.yml
   - type: VulnerabilityDisclosure
