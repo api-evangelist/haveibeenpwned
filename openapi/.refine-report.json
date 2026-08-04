@@ -1,0 +1,28 @@
+{
+  "provider": "haveibeenpwned",
+  "sources": [
+    "haveibeenpwned-breached-accounts-api-openapi.yml",
+    "haveibeenpwned-breaches-api-openapi.yml",
+    "haveibeenpwned-data-classes-api-openapi.yml",
+    "haveibeenpwned-domain-search-api-openapi.yml",
+    "haveibeenpwned-pastes-api-openapi.yml",
+    "haveibeenpwned-range-search-api-openapi.yml",
+    "haveibeenpwned-stealer-logs-api-openapi.yml",
+    "haveibeenpwned-subscription-api-openapi.yml"
+  ],
+  "outputs": [
+    "haveibeenpwned-breached-accounts-api-openapi.yml",
+    "haveibeenpwned-breaches-api-openapi.yml",
+    "haveibeenpwned-data-classes-api-openapi.yml",
+    "haveibeenpwned-domain-search-api-openapi.yml",
+    "haveibeenpwned-pastes-api-openapi.yml",
+    "haveibeenpwned-range-search-api-openapi.yml",
+    "haveibeenpwned-stealer-logs-api-openapi.yml",
+    "haveibeenpwned-subscription-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

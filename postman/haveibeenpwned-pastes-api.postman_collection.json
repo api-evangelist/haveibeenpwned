@@ -1,0 +1,338 @@
+{
+  "info": {
+    "_postman_id": "468847df-0b95-4227-962c-81f4a3090e1c",
+    "name": "Have I Been Pwned API v3 Breached Accounts Pastes API",
+    "description": "The Have I Been Pwned (HIBP) API allows the list of pwned accounts (email addresses, domains,\npasswords, and stealer log entries) to be quickly searched via REST. Authenticated endpoints\nrequire an `hibp-api-key` header. All requests must send a `user-agent` header that accurately\nidentifies the consuming application. Subscriptions range from Pwned 1 to Pwned 5.\n\n\nContact Support:\n Name: Have I Been Pwned",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:23.000Z",
+    "updatedAt": "2026-07-28T01:53:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-468847df-0b95-4227-962c-81f4a3090e1c"
+  },
+  "item": [
+    {
+      "name": "pasteaccount",
+      "item": [
+        {
+          "name": "{account}",
+          "item": [
+            {
+              "name": "Get Pastes For An Account",
+              "id": "f17a8fe5-cbf3-4adc-971c-c80b24b9035e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/pasteaccount/:account",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pasteaccount",
+                    ":account"
+                  ],
+                  "variable": [
+                    {
+                      "id": "948b1a18-efbe-4bcd-94d7-96c28b0bc35e",
+                      "key": "account",
+                      "value": "<email>",
+                      "description": "(Required) URL-encoded email address to search."
+                    }
+                  ]
+                },
+                "description": "Returns all pastes referencing the supplied email address, sorted chronologically (newest first)."
+              },
+              "response": [
+                {
+                  "id": "f3696bf2-b118-4325-9308-b0807e2b6a47",
+                  "name": "A list of pastes referencing the account.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pasteaccount/:account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pasteaccount",
+                        ":account"
+                      ],
+                      "variable": [
+                        {
+                          "key": "account"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"Source\": \"<string>\",\n    \"Id\": \"<string>\",\n    \"EmailCount\": \"<integer>\",\n    \"Title\": \"<string>\",\n    \"Date\": \"<dateTime>\"\n  },\n  {\n    \"Source\": \"<string>\",\n    \"Id\": \"<string>\",\n    \"EmailCount\": \"<integer>\",\n    \"Title\": \"<string>\",\n    \"Date\": \"<dateTime>\"\n  }\n]",
+                  "createdAt": "2026-07-28T01:53:24.000Z",
+                  "updatedAt": "2026-07-28T01:53:24.000Z",
+                  "uid": "35240-f3696bf2-b118-4325-9308-b0807e2b6a47"
+                },
+                {
+                  "id": "f68469a2-3c4f-45c2-b271-bc006255a279",
+                  "name": "The `hibp-api-key` header is missing or invalid.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pasteaccount/:account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pasteaccount",
+                        ":account"
+                      ],
+                      "variable": [
+                        {
+                          "key": "account"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:53:24.000Z",
+                  "updatedAt": "2026-07-28T01:53:24.000Z",
+                  "uid": "35240-f68469a2-3c4f-45c2-b271-bc006255a279"
+                },
+                {
+                  "id": "cb2149a4-6579-4a6e-be0b-14685397fc66",
+                  "name": "The request is forbidden. Common causes include a missing `user-agent` header,\nquerying an unverified domain, or a feature not included in the calling subscription.\n",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pasteaccount/:account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pasteaccount",
+                        ":account"
+                      ],
+                      "variable": [
+                        {
+                          "key": "account"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:53:24.000Z",
+                  "updatedAt": "2026-07-28T01:53:24.000Z",
+                  "uid": "35240-cb2149a4-6579-4a6e-be0b-14685397fc66"
+                },
+                {
+                  "id": "4b00932f-50fc-413f-9bbb-565339b26bfc",
+                  "name": "No record matched the supplied identifier.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pasteaccount/:account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pasteaccount",
+                        ":account"
+                      ],
+                      "variable": [
+                        {
+                          "key": "account"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:53:24.000Z",
+                  "updatedAt": "2026-07-28T01:53:24.000Z",
+                  "uid": "35240-4b00932f-50fc-413f-9bbb-565339b26bfc"
+                },
+                {
+                  "id": "e1966fa6-f937-4668-9362-bb5200fa1cfb",
+                  "name": "Rate limit exceeded. Inspect the `retry-after` header to determine when to retry.\n",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pasteaccount/:account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pasteaccount",
+                        ":account"
+                      ],
+                      "variable": [
+                        {
+                          "key": "account"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds to wait before retrying.",
+                        "type": "text/plain"
+                      },
+                      "key": "retry-after",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:53:24.000Z",
+                  "updatedAt": "2026-07-28T01:53:24.000Z",
+                  "uid": "35240-e1966fa6-f937-4668-9362-bb5200fa1cfb"
+                }
+              ],
+              "createdAt": "2026-07-28T01:53:24.000Z",
+              "updatedAt": "2026-07-28T01:53:24.000Z",
+              "uid": "35240-f17a8fe5-cbf3-4adc-971c-c80b24b9035e"
+            }
+          ],
+          "id": "38c3d784-2308-47c7-adde-18637198168f",
+          "createdAt": "2026-07-28T01:53:24.000Z",
+          "updatedAt": "2026-07-28T01:53:24.000Z",
+          "uid": "35240-38c3d784-2308-47c7-adde-18637198168f"
+        }
+      ],
+      "id": "84993526-66be-44ec-b0e0-e0b71c256a1e",
+      "createdAt": "2026-07-28T01:53:24.000Z",
+      "updatedAt": "2026-07-28T01:53:24.000Z",
+      "uid": "35240-84993526-66be-44ec-b0e0-e0b71c256a1e"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "hibp-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://haveibeenpwned.com/api/v3"
+    }
+  ]
+}

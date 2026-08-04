@@ -1,0 +1,176 @@
+{
+  "info": {
+    "_postman_id": "87368245-68b6-46df-b011-b3fa1ac20a1c",
+    "name": "Have I Been Pwned API v3 Breached Accounts Subscription API",
+    "description": "The Have I Been Pwned (HIBP) API allows the list of pwned accounts (email addresses, domains,\npasswords, and stealer log entries) to be quickly searched via REST. Authenticated endpoints\nrequire an `hibp-api-key` header. All requests must send a `user-agent` header that accurately\nidentifies the consuming application. Subscriptions range from Pwned 1 to Pwned 5.\n\n\nContact Support:\n Name: Have I Been Pwned",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:29.000Z",
+    "updatedAt": "2026-07-28T01:53:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-87368245-68b6-46df-b011-b3fa1ac20a1c"
+  },
+  "item": [
+    {
+      "name": "subscription",
+      "item": [
+        {
+          "name": "status",
+          "item": [
+            {
+              "name": "Get Subscription Status",
+              "id": "e3ad2084-0831-4e38-bf26-02b6ddb996db",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/subscription/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscription",
+                    "status"
+                  ]
+                },
+                "description": "Returns details about the calling key's current subscription including RPM and feature flags."
+              },
+              "response": [
+                {
+                  "id": "9d10779c-cac8-4914-b550-e7ad3b0808d8",
+                  "name": "The current subscription details.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscription/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscription",
+                        "status"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"SubscriptionName\": \"<string>\",\n  \"Description\": \"<string>\",\n  \"SubscribedUntil\": \"<dateTime>\",\n  \"Rpm\": \"<integer>\",\n  \"DomainSearchMaxBreachedAccounts\": \"<integer>\",\n  \"MaxBreachedDomains\": \"<integer>\",\n  \"IncludesStealerLogs\": \"<boolean>\",\n  \"IncludesBulkDomainAdd\": \"<boolean>\",\n  \"IncludesAutoSubdomainVerification\": \"<boolean>\",\n  \"IncludesCustomerDomains\": \"<boolean>\",\n  \"IncludesKAnon\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T01:53:29.000Z",
+                  "updatedAt": "2026-07-28T01:53:29.000Z",
+                  "uid": "35240-9d10779c-cac8-4914-b550-e7ad3b0808d8"
+                },
+                {
+                  "id": "44516b85-e10b-42f9-8759-c3672830dedc",
+                  "name": "The `hibp-api-key` header is missing or invalid.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscription/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscription",
+                        "status"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:53:29.000Z",
+                  "updatedAt": "2026-07-28T01:53:29.000Z",
+                  "uid": "35240-44516b85-e10b-42f9-8759-c3672830dedc"
+                }
+              ],
+              "createdAt": "2026-07-28T01:53:29.000Z",
+              "updatedAt": "2026-07-28T01:53:29.000Z",
+              "uid": "35240-e3ad2084-0831-4e38-bf26-02b6ddb996db"
+            }
+          ],
+          "id": "c995f5d0-7e0e-4e59-82ed-c84d9e08d187",
+          "createdAt": "2026-07-28T01:53:29.000Z",
+          "updatedAt": "2026-07-28T01:53:29.000Z",
+          "uid": "35240-c995f5d0-7e0e-4e59-82ed-c84d9e08d187"
+        }
+      ],
+      "id": "3446ee54-8a1f-4d80-a669-d872dc27022d",
+      "createdAt": "2026-07-28T01:53:29.000Z",
+      "updatedAt": "2026-07-28T01:53:29.000Z",
+      "uid": "35240-3446ee54-8a1f-4d80-a669-d872dc27022d"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "hibp-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://haveibeenpwned.com/api/v3"
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "info": {
+    "_postman_id": "8d5db9ae-9494-41b0-8d21-b6db2f06eb7c",
+    "name": "Have I Been Pwned API v3 Breached Accounts Range Search API",
+    "description": "The Have I Been Pwned (HIBP) API allows the list of pwned accounts (email addresses, domains,\npasswords, and stealer log entries) to be quickly searched via REST. Authenticated endpoints\nrequire an `hibp-api-key` header. All requests must send a `user-agent` header that accurately\nidentifies the consuming application. Subscriptions range from Pwned 1 to Pwned 5.\n\n\nContact Support:\n Name: Have I Been Pwned",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:27.000Z",
+    "updatedAt": "2026-07-28T01:53:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8d5db9ae-9494-41b0-8d21-b6db2f06eb7c"
+  },
+  "item": [
+    {
+      "name": "range",
+      "item": [
+        {
+          "name": "{hashPrefix}",
+          "item": [
+            {
+              "name": "Search By Hash Range",
+              "id": "f49f471a-2361-4a2c-9e4b-8921ae7d10cf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "When `true`, the response is padded to 800-1,000 entries to mask the response size.",
+                    "key": "Add-Padding",
+                    "value": "<boolean>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/range/:hashPrefix?mode=sha1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "range",
+                    ":hashPrefix"
+                  ],
+                  "query": [
+                    {
+                      "description": "Hash algorithm. Default is SHA-1; set `ntlm` for NTLM hashes.",
+                      "key": "mode",
+                      "value": "sha1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "4294b91d-fb9a-467b-b4b1-6643abb59014",
+                      "key": "hashPrefix",
+                      "value": "AEA66",
+                      "description": "(Required) First 5 characters of the SHA-1 (or NTLM) password hash, uppercase hex."
+                    }
+                  ]
+                },
+                "description": "Returns suffixes of all SHA-1 (or NTLM) hashes that begin with the supplied 5-character\nprefix, alongside the number of times each hash was observed in breaches.\n"
+              },
+              "response": [
+                {
+                  "id": "3b2037ca-9712-4067-b900-be550ca9ad0f",
+                  "name": "A newline-separated list of `HASHSUFFIX:COUNT` entries. The endpoint always returns\n200; absence of the queried suffix indicates the password is not known to HIBP.\n",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "When `true`, the response is padded to 800-1,000 entries to mask the response size.",
+                        "key": "Add-Padding",
+                        "value": "<boolean>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/range/:hashPrefix?mode=sha1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "range",
+                        ":hashPrefix"
+                      ],
+                      "query": [
+                        {
+                          "description": "Hash algorithm. Default is SHA-1; set `ntlm` for NTLM hashes.",
+                          "key": "mode",
+                          "value": "sha1"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "hashPrefix"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-07-28T01:53:27.000Z",
+                  "updatedAt": "2026-07-28T01:53:27.000Z",
+                  "uid": "35240-3b2037ca-9712-4067-b900-be550ca9ad0f"
+                }
+              ],
+              "createdAt": "2026-07-28T01:53:27.000Z",
+              "updatedAt": "2026-07-28T01:53:27.000Z",
+              "uid": "35240-f49f471a-2361-4a2c-9e4b-8921ae7d10cf"
+            }
+          ],
+          "id": "8fc05a7a-fe2e-4c2f-abfb-8dfe7f993981",
+          "createdAt": "2026-07-28T01:53:27.000Z",
+          "updatedAt": "2026-07-28T01:53:27.000Z",
+          "uid": "35240-8fc05a7a-fe2e-4c2f-abfb-8dfe7f993981"
+        }
+      ],
+      "id": "e0c83070-add5-4e4c-854c-5d79576e0c57",
+      "createdAt": "2026-07-28T01:53:27.000Z",
+      "updatedAt": "2026-07-28T01:53:27.000Z",
+      "uid": "35240-e0c83070-add5-4e4c-854c-5d79576e0c57"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "hibp-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://haveibeenpwned.com/api/v3"
+    }
+  ]
+}

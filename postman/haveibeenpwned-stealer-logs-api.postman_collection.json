@@ -1,0 +1,724 @@
+{
+  "info": {
+    "_postman_id": "7a9b887c-54ad-4379-a6fe-36b766d3854e",
+    "name": "Have I Been Pwned API v3 Breached Accounts Stealer Logs API",
+    "description": "The Have I Been Pwned (HIBP) API allows the list of pwned accounts (email addresses, domains,\npasswords, and stealer log entries) to be quickly searched via REST. Authenticated endpoints\nrequire an `hibp-api-key` header. All requests must send a `user-agent` header that accurately\nidentifies the consuming application. Subscriptions range from Pwned 1 to Pwned 5.\n\n\nContact Support:\n Name: Have I Been Pwned",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:28.000Z",
+    "updatedAt": "2026-07-28T01:53:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7a9b887c-54ad-4379-a6fe-36b766d3854e"
+  },
+  "item": [
+    {
+      "name": "stealerlogsbyemail",
+      "item": [
+        {
+          "name": "{email}",
+          "item": [
+            {
+              "name": "Get Stealer Log Domains For An Email",
+              "id": "77287280-b299-4a24-8821-2ab634eeeef4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/stealerlogsbyemail/:email",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stealerlogsbyemail",
+                    ":email"
+                  ],
+                  "variable": [
+                    {
+                      "id": "117f8f43-ed7d-4e27-95a4-96ca75153dc5",
+                      "key": "email",
+                      "value": "<email>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns website domains exposed in stealer log corpora for the supplied email address."
+              },
+              "response": [
+                {
+                  "id": "22d3d873-8b32-4f76-9568-b6284740ed4c",
+                  "name": "An alphabetically ordered list of website domains.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stealerlogsbyemail/:email",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stealerlogsbyemail",
+                        ":email"
+                      ],
+                      "variable": [
+                        {
+                          "key": "email"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "createdAt": "2026-07-28T01:53:28.000Z",
+                  "updatedAt": "2026-07-28T01:53:28.000Z",
+                  "uid": "35240-22d3d873-8b32-4f76-9568-b6284740ed4c"
+                },
+                {
+                  "id": "e4eb92b8-64ec-49a1-ab7c-34369371b60b",
+                  "name": "The `hibp-api-key` header is missing or invalid.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stealerlogsbyemail/:email",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stealerlogsbyemail",
+                        ":email"
+                      ],
+                      "variable": [
+                        {
+                          "key": "email"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:53:28.000Z",
+                  "updatedAt": "2026-07-28T01:53:28.000Z",
+                  "uid": "35240-e4eb92b8-64ec-49a1-ab7c-34369371b60b"
+                },
+                {
+                  "id": "01c485c5-a3b9-4b8c-aa8a-3e689ef308ec",
+                  "name": "The request is forbidden. Common causes include a missing `user-agent` header,\nquerying an unverified domain, or a feature not included in the calling subscription.\n",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stealerlogsbyemail/:email",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stealerlogsbyemail",
+                        ":email"
+                      ],
+                      "variable": [
+                        {
+                          "key": "email"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:53:28.000Z",
+                  "updatedAt": "2026-07-28T01:53:28.000Z",
+                  "uid": "35240-01c485c5-a3b9-4b8c-aa8a-3e689ef308ec"
+                },
+                {
+                  "id": "f28de5be-ebce-47d2-96a3-f71705f02f69",
+                  "name": "No record matched the supplied identifier.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stealerlogsbyemail/:email",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stealerlogsbyemail",
+                        ":email"
+                      ],
+                      "variable": [
+                        {
+                          "key": "email"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:53:28.000Z",
+                  "updatedAt": "2026-07-28T01:53:28.000Z",
+                  "uid": "35240-f28de5be-ebce-47d2-96a3-f71705f02f69"
+                }
+              ],
+              "createdAt": "2026-07-28T01:53:28.000Z",
+              "updatedAt": "2026-07-28T01:53:28.000Z",
+              "uid": "35240-77287280-b299-4a24-8821-2ab634eeeef4"
+            }
+          ],
+          "id": "ff12d279-9d42-4fb4-a96b-939f0cb212cd",
+          "createdAt": "2026-07-28T01:53:28.000Z",
+          "updatedAt": "2026-07-28T01:53:28.000Z",
+          "uid": "35240-ff12d279-9d42-4fb4-a96b-939f0cb212cd"
+        }
+      ],
+      "id": "2a92c7ea-bb11-41cf-aba7-72c16db671fd",
+      "createdAt": "2026-07-28T01:53:28.000Z",
+      "updatedAt": "2026-07-28T01:53:28.000Z",
+      "uid": "35240-2a92c7ea-bb11-41cf-aba7-72c16db671fd"
+    },
+    {
+      "name": "stealerlogsbywebsitedomain",
+      "item": [
+        {
+          "name": "{domain}",
+          "item": [
+            {
+              "name": "Get Stealer Log Emails For A Website Domain",
+              "id": "396cf5fe-438f-4713-8b1a-57385f90501d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/stealerlogsbywebsitedomain/:domain",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stealerlogsbywebsitedomain",
+                    ":domain"
+                  ],
+                  "variable": [
+                    {
+                      "id": "afd76ef3-8b03-401f-b9fd-fdba66212e3f",
+                      "key": "domain",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns email addresses exposed against a verified website domain."
+              },
+              "response": [
+                {
+                  "id": "9a9e2296-4f52-4523-adfb-ddd6632e7acf",
+                  "name": "An alphabetically ordered list of email addresses.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stealerlogsbywebsitedomain/:domain",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stealerlogsbywebsitedomain",
+                        ":domain"
+                      ],
+                      "variable": [
+                        {
+                          "key": "domain"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  \"<email>\",\n  \"<email>\"\n]",
+                  "createdAt": "2026-07-28T01:53:28.000Z",
+                  "updatedAt": "2026-07-28T01:53:28.000Z",
+                  "uid": "35240-9a9e2296-4f52-4523-adfb-ddd6632e7acf"
+                },
+                {
+                  "id": "e52f270d-6e94-4bc1-bb31-477e824c9482",
+                  "name": "The `hibp-api-key` header is missing or invalid.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stealerlogsbywebsitedomain/:domain",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stealerlogsbywebsitedomain",
+                        ":domain"
+                      ],
+                      "variable": [
+                        {
+                          "key": "domain"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:53:28.000Z",
+                  "updatedAt": "2026-07-28T01:53:28.000Z",
+                  "uid": "35240-e52f270d-6e94-4bc1-bb31-477e824c9482"
+                },
+                {
+                  "id": "4f18a001-9599-4a7e-a743-693f94149f5a",
+                  "name": "The request is forbidden. Common causes include a missing `user-agent` header,\nquerying an unverified domain, or a feature not included in the calling subscription.\n",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stealerlogsbywebsitedomain/:domain",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stealerlogsbywebsitedomain",
+                        ":domain"
+                      ],
+                      "variable": [
+                        {
+                          "key": "domain"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:53:28.000Z",
+                  "updatedAt": "2026-07-28T01:53:28.000Z",
+                  "uid": "35240-4f18a001-9599-4a7e-a743-693f94149f5a"
+                },
+                {
+                  "id": "1317ca34-b361-4830-a3e7-5d6284b54d19",
+                  "name": "No record matched the supplied identifier.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stealerlogsbywebsitedomain/:domain",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stealerlogsbywebsitedomain",
+                        ":domain"
+                      ],
+                      "variable": [
+                        {
+                          "key": "domain"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:53:28.000Z",
+                  "updatedAt": "2026-07-28T01:53:28.000Z",
+                  "uid": "35240-1317ca34-b361-4830-a3e7-5d6284b54d19"
+                }
+              ],
+              "createdAt": "2026-07-28T01:53:28.000Z",
+              "updatedAt": "2026-07-28T01:53:28.000Z",
+              "uid": "35240-396cf5fe-438f-4713-8b1a-57385f90501d"
+            }
+          ],
+          "id": "66c581a0-9f20-412d-94b8-2401ca79e5d3",
+          "createdAt": "2026-07-28T01:53:28.000Z",
+          "updatedAt": "2026-07-28T01:53:28.000Z",
+          "uid": "35240-66c581a0-9f20-412d-94b8-2401ca79e5d3"
+        }
+      ],
+      "id": "21465e36-cbe5-41fc-96c3-a404aababa5e",
+      "createdAt": "2026-07-28T01:53:28.000Z",
+      "updatedAt": "2026-07-28T01:53:28.000Z",
+      "uid": "35240-21465e36-cbe5-41fc-96c3-a404aababa5e"
+    },
+    {
+      "name": "stealerlogsbyemaildomain",
+      "item": [
+        {
+          "name": "{domain}",
+          "item": [
+            {
+              "name": "Get Stealer Log Aliases For An Email Domain",
+              "id": "a7f8875a-83e2-4ad4-8b1c-784c2a951dee",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/stealerlogsbyemaildomain/:domain",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stealerlogsbyemaildomain",
+                    ":domain"
+                  ],
+                  "variable": [
+                    {
+                      "id": "33410e4f-62e4-460d-b331-3923525e8d1d",
+                      "key": "domain",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns email aliases (and the website domains exposing them) for the supplied verified email domain."
+              },
+              "response": [
+                {
+                  "id": "8a092cc8-a9d9-492a-a130-4bec1c19becc",
+                  "name": "A map of alias to exposed website domains.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stealerlogsbyemaildomain/:domain",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stealerlogsbyemaildomain",
+                        ":domain"
+                      ],
+                      "variable": [
+                        {
+                          "key": "domain"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"magna67\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"animc40\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T01:53:28.000Z",
+                  "updatedAt": "2026-07-28T01:53:28.000Z",
+                  "uid": "35240-8a092cc8-a9d9-492a-a130-4bec1c19becc"
+                },
+                {
+                  "id": "eac50ceb-3385-4da2-b192-ec78ce1f8b44",
+                  "name": "The `hibp-api-key` header is missing or invalid.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stealerlogsbyemaildomain/:domain",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stealerlogsbyemaildomain",
+                        ":domain"
+                      ],
+                      "variable": [
+                        {
+                          "key": "domain"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:53:28.000Z",
+                  "updatedAt": "2026-07-28T01:53:28.000Z",
+                  "uid": "35240-eac50ceb-3385-4da2-b192-ec78ce1f8b44"
+                },
+                {
+                  "id": "82c2dba9-1d02-4575-900a-10ed2650e8ac",
+                  "name": "The request is forbidden. Common causes include a missing `user-agent` header,\nquerying an unverified domain, or a feature not included in the calling subscription.\n",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hibp-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stealerlogsbyemaildomain/:domain",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stealerlogsbyemaildomain",
+                        ":domain"
+                      ],
+                      "variable": [
+                        {
+                          "key": "domain"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:53:28.000Z",
+                  "updatedAt": "2026-07-28T01:53:28.000Z",
+                  "uid": "35240-82c2dba9-1d02-4575-900a-10ed2650e8ac"
+                }
+              ],
+              "createdAt": "2026-07-28T01:53:28.000Z",
+              "updatedAt": "2026-07-28T01:53:28.000Z",
+              "uid": "35240-a7f8875a-83e2-4ad4-8b1c-784c2a951dee"
+            }
+          ],
+          "id": "f934c965-a88e-486d-bfee-71a4bd0a0bdf",
+          "createdAt": "2026-07-28T01:53:28.000Z",
+          "updatedAt": "2026-07-28T01:53:28.000Z",
+          "uid": "35240-f934c965-a88e-486d-bfee-71a4bd0a0bdf"
+        }
+      ],
+      "id": "2fbe726b-e292-4ea3-a34c-32b8f85cb9b6",
+      "createdAt": "2026-07-28T01:53:28.000Z",
+      "updatedAt": "2026-07-28T01:53:28.000Z",
+      "uid": "35240-2fbe726b-e292-4ea3-a34c-32b8f85cb9b6"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "hibp-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://haveibeenpwned.com/api/v3"
+    }
+  ]
+}

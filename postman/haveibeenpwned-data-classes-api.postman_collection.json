@@ -1,0 +1,122 @@
+{
+  "info": {
+    "_postman_id": "d70ff3f8-47cf-4f6a-86aa-5c0be104c38b",
+    "name": "Have I Been Pwned API v3 Breached Accounts Data Classes API",
+    "description": "The Have I Been Pwned (HIBP) API allows the list of pwned accounts (email addresses, domains,\npasswords, and stealer log entries) to be quickly searched via REST. Authenticated endpoints\nrequire an `hibp-api-key` header. All requests must send a `user-agent` header that accurately\nidentifies the consuming application. Subscriptions range from Pwned 1 to Pwned 5.\n\n\nContact Support:\n Name: Have I Been Pwned",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:53:21.000Z",
+    "updatedAt": "2026-07-28T01:53:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d70ff3f8-47cf-4f6a-86aa-5c0be104c38b"
+  },
+  "item": [
+    {
+      "name": "dataclasses",
+      "item": [
+        {
+          "name": "Get All Data Classes",
+          "id": "f5576179-940f-40f7-a08f-4f1cfda3836f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/dataclasses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "dataclasses"
+              ]
+            },
+            "description": "Returns the alphabetically ordered list of data classes that may be exposed in breaches."
+          },
+          "response": [
+            {
+              "id": "4f84bca3-876d-4362-b094-9ffdd8a05730",
+              "name": "An alphabetically ordered list of data class names.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hibp-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dataclasses",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dataclasses"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  \"<string>\",\n  \"<string>\"\n]",
+              "createdAt": "2026-07-28T01:53:21.000Z",
+              "updatedAt": "2026-07-28T01:53:21.000Z",
+              "uid": "35240-4f84bca3-876d-4362-b094-9ffdd8a05730"
+            }
+          ],
+          "createdAt": "2026-07-28T01:53:21.000Z",
+          "updatedAt": "2026-07-28T01:53:21.000Z",
+          "uid": "35240-f5576179-940f-40f7-a08f-4f1cfda3836f"
+        }
+      ],
+      "id": "b4e42bd6-0743-47d2-b37c-c2b3a3af058f",
+      "createdAt": "2026-07-28T01:53:21.000Z",
+      "updatedAt": "2026-07-28T01:53:21.000Z",
+      "uid": "35240-b4e42bd6-0743-47d2-b37c-c2b3a3af058f"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "hibp-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://haveibeenpwned.com/api/v3"
+    }
+  ]
+}
